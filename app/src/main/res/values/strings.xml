@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">QuickCart</string>
+
+    <string name="app_desc">QuickCart</string>
+
+    <string name="ok">OK</string>
+
+    <!--Content Descriptions-->
+    <string name="app_logo">Smart Home App Logo</string>
+    <string name="add_button">Add Button</string>
+    <string name="close_button">Close Button</string>
+    <string name="menu_button">Menu Button</string>
+    <string name="profile_button">Profile Button</string>
+    <string name="alert_warning">Alert Warning</string>
+    <string name="clear_button">Clear Button</string>
+    <string name="action_button">Action Button</string>
+    <string name="nav_button">Navigation Button</string>
+    <string name="information_icon">Information Icon</string>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Elevation-->
+    <dimen name="elevation_tiny">2dp</dimen>
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="elevation_medium">6dp</dimen>
+    <dimen name="elevation_large">8dp</dimen>
+
+    <!--Padding-->
+    <dimen name="padding_tiny">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_xl">20dp</dimen>
+    <dimen name="padding_xxl">24dp</dimen>
+
+    <!--Divider thickness-->
+    <dimen name="thickness_tiny">1dp</dimen>
+    <dimen name="thickness_small">2dp</dimen>
+    <dimen name="thickness_medium">4dp</dimen>
+    <dimen name="thickness_large">6dp</dimen>
+
+    <!--Spacer height-->
+    <dimen name="height_tiny">5dp</dimen>
+    <dimen name="height_small">10dp</dimen>
+    <dimen name="height_medium">15dp</dimen>
+    <dimen name="height_large">20dp</dimen>
+
+    <!--Button height-->
+    <dimen name="filled_button_height">48dp</dimen>
+
+    <!--Button elevation-->
+    <dimen name="button_default_elevation">1dp</dimen>
+    <dimen name="button_pressed_elevation">2dp</dimen>
+    <dimen name="button_disabled_elevation">0dp</dimen>
+
+    <!--Corner radius-->
+    <dimen name="corner_radius_tiny">4dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_medium">16dp</dimen>
+    <dimen name="corner_radius_large">20dp</dimen>
+    <dimen name="corner_radius_xl">24dp</dimen>
+
+    <!--Font sizes-->
+    <dimen name="text_button_font_tiny">10dp</dimen>
+    <dimen name="text_button_font_small">14dp</dimen>
+    <dimen name="text_button_font_medium">18dp</dimen>
+    <dimen name="text_button_font_large">24dp</dimen>
+
+    <dimen name="box_size_tiny">40dp</dimen>
+    <dimen name="box_size_small">76dp</dimen>
+    <dimen name="box_size_medium">120dp</dimen>
+    <dimen name="box_size_large">150dp</dimen>
+    <dimen name="box_size_xl">230dp</dimen>
+
+    <!--Navigation Drawer Dimensions-->
+    <dimen name="drawer_header_image_size">50dp</dimen>
+    <dimen name="drawer_header_padding">8dp</dimen>
+    <dimen name="drawer_header_spacing">10dp</dimen>
+    <dimen name="drawer_surface_padding">8dp</dimen>
+    <dimen name="drawer_surface_width">250dp</dimen>
+    <dimen name="drawer_icon_size">24dp</dimen>
+    <dimen name="drawer_item_padding">16dp</dimen>
+    <dimen name="drawer_item_spacing">4dp</dimen>
+    <dimen name="drawer_item_corner_radius">20dp</dimen>
+</resources>
