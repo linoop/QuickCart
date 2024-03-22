@@ -6,6 +6,9 @@ object Constants {
 
     const val EMPTY = ""
 
+    const val STARTING_PAGE_INDEX = 0
+    const val MAX_PAGE_SIZE = 10
+
     //API Status
     const val API_SUCCESS = "Success"
     const val API_FAILED = "Error"
