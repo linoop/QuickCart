@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -110,7 +111,7 @@ fun DrawHomeContent(
     userEvent: HomePageUserEvent
 ) {
     val moviePagingItems = userState.productPagingItems.collectAsLazyPagingItems()
-    LazyColumn(modifier = Modifier.padding(10.dp)) {
+    LazyColumn(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small))) {
         items(moviePagingItems.itemCount) { index ->
             moviePagingItems[index]?.let { product ->
                 DrawProductCardView(product = product) { id ->

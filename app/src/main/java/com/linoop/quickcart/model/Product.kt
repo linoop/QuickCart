@@ -17,13 +17,13 @@ data class Product(
     @SerializedName("description")
     var description: String = EMPTY,
     @SerializedName("discountPercentage")
-    var discountPercentage: Double? = null,
+    var discountPercentage: Float? = null,
     @SerializedName("price")
     var price: Int = 0,
     @SerializedName("rating")
-    var rating: Double? = null,
+    var rating: Float = 0.0f,
     @SerializedName("stock")
-    var stock: Int? = null,
+    var stock: Int = 0,
     @SerializedName("thumbnail")
     var thumbnail: String = EMPTY,
     @SerializedName("title")

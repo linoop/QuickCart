@@ -9,6 +9,9 @@ object Constants {
     const val STARTING_PAGE_INDEX = 0
     const val MAX_PAGE_SIZE = 10
 
+    //Product Rating
+    const val MAX_RATING = 5
+
     //API Status
     const val API_SUCCESS = "Success"
     const val API_FAILED = "Error"
@@ -25,7 +28,6 @@ object Constants {
     const val APPLICATION_JSON = "Application/json"
     const val USER_AGENT = "User-Agent"
     const val USER_AGENT_VALUE = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-
 
     //Database
     const val DATABASE_NAME = "quick_cart_database"

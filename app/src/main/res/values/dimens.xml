@@ -27,7 +27,11 @@
     <dimen name="height_large">20dp</dimen>
 
     <!--Button height-->
-    <dimen name="filled_button_height">48dp</dimen>
+    <dimen name="filled_button_height">58dp</dimen>
+
+    <dimen name="rating_bar_size_small">10dp</dimen>
+    <dimen name="rating_bar_size_medium">16dp</dimen>
+    <dimen name="rating_bar_size_large">24dp</dimen>
 
     <!--Button elevation-->
     <dimen name="button_default_elevation">1dp</dimen>
@@ -47,20 +51,11 @@
     <dimen name="text_button_font_medium">18dp</dimen>
     <dimen name="text_button_font_large">24dp</dimen>
 
+    <!--Box sizes-->
     <dimen name="box_size_tiny">40dp</dimen>
     <dimen name="box_size_small">76dp</dimen>
-    <dimen name="box_size_medium">120dp</dimen>
+    <dimen name="box_size_medium">100dp</dimen>
     <dimen name="box_size_large">150dp</dimen>
-    <dimen name="box_size_xl">230dp</dimen>
+    <dimen name="box_size_xl">330dp</dimen>
 
-    <!--Navigation Drawer Dimensions-->
-    <dimen name="drawer_header_image_size">50dp</dimen>
-    <dimen name="drawer_header_padding">8dp</dimen>
-    <dimen name="drawer_header_spacing">10dp</dimen>
-    <dimen name="drawer_surface_padding">8dp</dimen>
-    <dimen name="drawer_surface_width">250dp</dimen>
-    <dimen name="drawer_icon_size">24dp</dimen>
-    <dimen name="drawer_item_padding">16dp</dimen>
-    <dimen name="drawer_item_spacing">4dp</dimen>
-    <dimen name="drawer_item_corner_radius">20dp</dimen>
 </resources>
