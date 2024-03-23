@@ -78,7 +78,11 @@ private fun DrawProductDetails(
         snackbarHost = { MySnackBar(snackBarHostState = snackBarState) },
     ) {
         Box(modifier = Modifier.padding(it)) {
-            ProductPageViewState(showSnackBar = showSnackBar, state = userState) {
+            ProductPageViewState(
+                navController = navController,
+                showSnackBar = showSnackBar,
+                state = userState
+            ) {
                 DrawProductPageContent(userState, userEvent)
             }
         }
@@ -95,9 +99,9 @@ private fun DrawProductPageContent(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        DrawProductImagePager(imageUrls = userState.dataState.value.product.images)
-        DrawProductDetailsCardView(product = userState.dataState.value.product)
-        DrawAddToCartButton(modifier = Modifier, userEvent = userEvent)
+        DrawProductImagePager(imageUrls = userState.productDataState.value.product.images)
+        DrawProductDetailsCardView(product = userState.productDataState.value.product)
+        DrawAddToCartButton(modifier = Modifier, userState = userState, userEvent = userEvent)
     }
 }
 
@@ -113,14 +117,18 @@ private fun DrawProductImagePager(imageUrls: List<String>?) {
 }
 
 @Composable
-fun DrawAddToCartButton(modifier: Modifier, userEvent: ProductPageUserEvent) {
+fun DrawAddToCartButton(
+    modifier: Modifier,
+    userEvent: ProductPageUserEvent,
+    userState: ProductPageUserState
+) {
     OutlinedButton(
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_radius_medium)),
         modifier = modifier
             .fillMaxWidth()
             .padding(dimensionResource(id = R.dimen.padding_medium))
             .height(dimensionResource(id = R.dimen.filled_button_height)),
-        onClick = { },
+        onClick = { userEvent.addToCart.invoke(userState.productDataState.value.product) },
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = colorResource(id = R.color.button_color)
         ),
@@ -144,7 +152,7 @@ private fun DrawProductPageTopAppBar(
 ) {
     DrawTopAppBar(
         scrollBehavior = scrollBehavior,
-        title = userState.dataState.value.product.title,
+        title = userState.productDataState.value.product.title,
         navigationIcon = Icons.Default.KeyboardArrowLeft,
         actionIcon = Icons.Default.ShoppingCart,
         navOnClick = { navController.popBackStack() },

@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.product.state.AddToCartDataState
 import com.linoop.quickcart.product.state.ProductPageDataState
+import com.linoop.quickcart.product.usecase.AddToCartUseCase
 import com.linoop.quickcart.product.usecase.GetProductByIdUseCase
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.InputValidator
@@ -17,17 +19,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductViewModel @Inject constructor(
-    private val getProductById: GetProductByIdUseCase
+    private val getProductById: GetProductByIdUseCase,
+    private val addToCartUseCase: AddToCartUseCase,
 ) : ViewModel() {
 
-    private val _apiDataState = mutableStateOf(StateHolder(ProductPageDataState()))
-    val apiDataState: State<StateHolder<ProductPageDataState>> get() = _apiDataState
+    private val _productDataState = mutableStateOf(StateHolder(ProductPageDataState()))
+    val productDataState: State<StateHolder<ProductPageDataState>> get() = _productDataState
+
+    private val _addToCartDataState = mutableStateOf(StateHolder(AddToCartDataState()))
+    val addToCartDataState: State<StateHolder<AddToCartDataState>> get() = _addToCartDataState
     fun getProductByID(productId: Int?) = viewModelScope.launch {
         val errorID = InputValidator.validateProductId(productId)
         if (errorID == null) getProductById.invoke(productId!!).collect { response ->
             when (response) {
                 is Resource.Loading -> {
-                    _apiDataState.value = apiDataState.value
+                    _productDataState.value = productDataState.value
                         .copy(ProductPageDataState().also { it.apiState = ApiState.Loading })
                 }
 
@@ -37,7 +43,7 @@ class ProductViewModel @Inject constructor(
                         message = response.message.toString()
                         product = response.data ?: Product()
                     }
-                    _apiDataState.value = apiDataState.value.copy(value = state)
+                    _productDataState.value = productDataState.value.copy(value = state)
                 }
 
                 is Resource.Error -> {
@@ -45,7 +51,28 @@ class ProductViewModel @Inject constructor(
                         apiState = ApiState.Error
                         message = response.message.toString()
                     }
-                    _apiDataState.value = apiDataState.value.copy(value = state)
+                    _productDataState.value = productDataState.value.copy(value = state)
+                }
+            }
+        }
+    }
+
+    fun addToCart(product: Product) = viewModelScope.launch {
+        addToCartUseCase.invoke(product).collect { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    val state = AddToCartDataState(apiState = ApiState.Loading)
+                    _addToCartDataState.value = addToCartDataState.value.copy(value = state)
+                }
+
+                is Resource.Success -> {
+                    val state = AddToCartDataState(apiState = ApiState.Success)
+                    _addToCartDataState.value = addToCartDataState.value.copy(value = state)
+                }
+
+                is Resource.Error -> {
+                    val state = AddToCartDataState(apiState = ApiState.Error)
+                    _addToCartDataState.value = addToCartDataState.value.copy(value = state)
                 }
             }
         }

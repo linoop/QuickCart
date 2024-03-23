@@ -14,18 +14,23 @@ import com.linoop.quickcart.utils.StateHolder
 data class ProductPageInitialValue(
     var query: String = Constants.EMPTY,
 )
+
 data class ProductPageUserState(
     val initialValue: ProductPageInitialValue = ProductPageInitialValue(),
     val queryError: State<Int?> = mutableStateOf(null),
     val showInfo: MutableState<Boolean> = mutableStateOf(false),
-    val dataState: StateHolder<ProductPageDataState> = StateHolder(ProductPageDataState())
+    val productDataState: StateHolder<ProductPageDataState> = StateHolder(ProductPageDataState()),
+    val addToCartDataState: StateHolder<AddToCartDataState> = StateHolder(AddToCartDataState()),
 )
 
 data class ProductPageUserEvent(
-    val getProductById: (productId: Int?) -> Unit = { _ -> }
+    val getProductById: (productId: Int?) -> Unit = { _ -> },
+    val addToCart: (product: Product) -> Unit = { _ -> }
 )
 
 data class ProductPageDataState(
     var product: Product = Product(),
     var apiState: ApiState = ApiState.Initial,
 ) : BaseState()
+
+data class AddToCartDataState(var apiState: ApiState = ApiState.Initial)
