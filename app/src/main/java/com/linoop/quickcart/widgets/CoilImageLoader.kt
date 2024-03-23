@@ -30,7 +30,7 @@ import okhttp3.OkHttpClient
 @Composable
 fun CoilImageLoader(
     imageUrl: Any,
-    @StringRes contentDesc: Int,
+    contentDesc: String,
     modifier: Modifier,
     @DrawableRes placeholder: Int,
     contentScale: ContentScale = ContentScale.Fit,
@@ -40,7 +40,7 @@ fun CoilImageLoader(
     Box(contentAlignment = Alignment.Center) {
         Image(
             painter = painter,
-            contentDescription = stringResource(id = contentDesc),
+            contentDescription = contentDesc,
             modifier = modifier,
             contentScale = contentScale,
             alignment = alignment

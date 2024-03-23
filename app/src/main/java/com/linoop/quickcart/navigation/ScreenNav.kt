@@ -3,18 +3,25 @@ package com.linoop.quickcart.navigation
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.linoop.quickcart.presentation.HomePageUI
-import com.linoop.quickcart.presentation.SplashScreenUI
+import androidx.navigation.navArgument
+import com.linoop.quickcart.home.presentation.HomePageUI
+import com.linoop.quickcart.home.presentation.SplashScreenUI
 import com.linoop.quickcart.utils.ShowSnackBar
-import com.linoop.quickcart.viewmodel.HomeViewModel
-import com.linoop.quickcart.presentation.CartPageUI
-import com.linoop.quickcart.presentation.ProductDetailsPageUI
-import com.linoop.quickcart.transformation.HomeViewModelToUserEvent
-import com.linoop.quickcart.transformation.HomeViewModelToUserState
+import com.linoop.quickcart.home.viewmodel.HomeViewModel
+import com.linoop.quickcart.home.presentation.CartPageUI
+import com.linoop.quickcart.product.presentation.ProductDetailsPageUI
+import com.linoop.quickcart.home.transformation.HomeViewModelToUserEvent
+import com.linoop.quickcart.home.transformation.HomeViewModelToUserState
+import com.linoop.quickcart.product.transformation.ProductViewModelToUserEvent
+import com.linoop.quickcart.product.transformation.ProductViewmodelToUserState
+import com.linoop.quickcart.product.viewmodel.ProductViewModel
+import com.linoop.quickcart.utils.Constants.PRODUCT_ID
 
 @Composable
 fun ScreenNav(
@@ -22,6 +29,12 @@ fun ScreenNav(
     navHostController: NavHostController,
     showSnackBar: ShowSnackBar
 ) {
+    val productDetailsArguments = listOf(
+        navArgument(PRODUCT_ID) {
+            type = NavType.IntType
+            defaultValue = 0
+        },
+    )
     NavHost(
         navController = navHostController,
         startDestination = Screen.SplashScreen.route
@@ -29,12 +42,16 @@ fun ScreenNav(
         composable(route = Screen.SplashScreen.route) {
             NavigateToSplashScreen(navHostController)
         }
+
         composable(route = Screen.HomeScreen.route) {
             NavigateToHomeScreen(navHostController, showSnackBar)
         }
 
-        composable(route = Screen.ProductDetailsScreen.route) {
-            NavigateToProductDetailsScreen(navHostController, showSnackBar)
+        composable(
+            route = Screen.ProductDetailsScreen.route.plus("/{$PRODUCT_ID}"),
+            arguments = productDetailsArguments
+        ) { entry ->
+            NavigateToProductDetailsScreen(navHostController, showSnackBar, entry)
         }
 
         composable(route = Screen.CartScreen.route) {
@@ -54,9 +71,20 @@ fun NavigateToCartScreen(
 @Composable
 fun NavigateToProductDetailsScreen(
     navController: NavController,
-    showSnackBar: ShowSnackBar
+    showSnackBar: ShowSnackBar,
+    backStackEntry: NavBackStackEntry
 ) {
-    ProductDetailsPageUI()
+    val productId = backStackEntry.arguments?.getInt(PRODUCT_ID)
+    val viewModel = hiltViewModel<ProductViewModel>()
+    val userState = ProductViewmodelToUserState().transform(viewModel)
+    val userEvent = ProductViewModelToUserEvent().transform(viewModel)
+    ProductDetailsPageUI(
+        navController = navController,
+        showSnackBar = showSnackBar,
+        userState = userState,
+        userEvent = userEvent,
+        productId = productId
+    )
 }
 
 @Composable

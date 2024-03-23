@@ -9,4 +9,5 @@ typealias onTrailingIconClicked = () -> Unit
 typealias onImeKeyAction = () -> Unit
 typealias onClearIconClicked = () -> Unit
 typealias onClick = () -> Unit
+typealias onItemClick = (itemId: Int) -> Unit
 typealias onSearch = (query: String) -> Unit

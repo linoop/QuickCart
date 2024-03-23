@@ -5,6 +5,10 @@
 
     <string name="ok">OK</string>
 
+    <!--Error Description-->
+    <string name="product_id_invalid_error">Invalid product ID</string>
+    <string name="product_id_null_error">Product ID can\'t be null</string>
+
     <!--Content Descriptions-->
     <string name="app_logo">Smart Home App Logo</string>
     <string name="add_button">Add Button</string>
