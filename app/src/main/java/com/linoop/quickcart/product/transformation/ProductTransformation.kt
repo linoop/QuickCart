@@ -8,7 +8,8 @@ import com.linoop.quickcart.utils.Transformer
 class ProductViewmodelToUserState : Transformer<ProductViewModel, ProductPageUserState> {
     override fun transform(input: ProductViewModel) = with(input) {
         ProductPageUserState(
-            dataState = apiDataState.value
+            productDataState = productDataState.value,
+            addToCartDataState = addToCartDataState.value
         )
     }
 }
@@ -16,7 +17,8 @@ class ProductViewmodelToUserState : Transformer<ProductViewModel, ProductPageUse
 class ProductViewModelToUserEvent : Transformer<ProductViewModel, ProductPageUserEvent> {
     override fun transform(input: ProductViewModel) = with(input) {
         ProductPageUserEvent(
-            getProductById = { getProductByID(it) }
+            getProductById = { getProductByID(it) },
+            addToCart = { addToCart(it) }
         )
     }
 }
