@@ -29,7 +29,9 @@
     <!--Button height-->
     <dimen name="filled_button_height">58dp</dimen>
 
-    <dimen name="rating_bar_size">24dp</dimen>
+    <dimen name="rating_bar_size_small">10dp</dimen>
+    <dimen name="rating_bar_size_medium">16dp</dimen>
+    <dimen name="rating_bar_size_large">24dp</dimen>
 
     <!--Button elevation-->
     <dimen name="button_default_elevation">1dp</dimen>
@@ -52,7 +54,7 @@
     <!--Box sizes-->
     <dimen name="box_size_tiny">40dp</dimen>
     <dimen name="box_size_small">76dp</dimen>
-    <dimen name="box_size_medium">120dp</dimen>
+    <dimen name="box_size_medium">100dp</dimen>
     <dimen name="box_size_large">150dp</dimen>
     <dimen name="box_size_xl">330dp</dimen>
 

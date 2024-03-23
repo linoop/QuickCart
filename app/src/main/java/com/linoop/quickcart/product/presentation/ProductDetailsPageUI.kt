@@ -1,13 +1,14 @@
 package com.linoop.quickcart.product.presentation
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -36,7 +37,6 @@ import com.linoop.quickcart.R
 import com.linoop.quickcart.navigation.Screen
 import com.linoop.quickcart.product.state.ProductPageUserEvent
 import com.linoop.quickcart.product.state.ProductPageUserState
-import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.widgets.DrawTopAppBar
 import com.linoop.quickcart.widgets.ImageViewPager
@@ -90,7 +90,11 @@ private fun DrawProductPageContent(
     userState: ProductPageUserState,
     userEvent: ProductPageUserEvent
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         DrawProductImagePager(imageUrls = userState.dataState.value.product.images)
         DrawProductDetailsCardView(product = userState.dataState.value.product)
         DrawAddToCartButton(modifier = Modifier, userEvent = userEvent)
@@ -110,25 +114,23 @@ private fun DrawProductImagePager(imageUrls: List<String>?) {
 
 @Composable
 fun DrawAddToCartButton(modifier: Modifier, userEvent: ProductPageUserEvent) {
-    AnimatedVisibility(visible = true) {
-        OutlinedButton(
-            shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_radius_medium)),
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_xxl))
-                .height(dimensionResource(id = R.dimen.filled_button_height)),
-            onClick = { },
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = colorResource(id = R.color.button_color),
-                contentColor = colorResource(id = R.color.purple_200)
-            )
-        ) {
-            Text(
-                text = stringResource(id = R.string.add_to_cart),
-                style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
-                textAlign = TextAlign.Center
-            )
-        }
+    OutlinedButton(
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_radius_medium)),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(dimensionResource(id = R.dimen.padding_medium))
+            .height(dimensionResource(id = R.dimen.filled_button_height)),
+        onClick = { },
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = colorResource(id = R.color.button_color)
+        ),
+        elevation = ButtonDefaults.buttonElevation(dimensionResource(id = R.dimen.elevation_medium))
+    ) {
+        Text(
+            text = stringResource(id = R.string.add_to_cart),
+            style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
+            textAlign = TextAlign.Center
+        )
     }
 }
 

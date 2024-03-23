@@ -6,7 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,8 +16,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.linoop.quickcart.R
@@ -23,8 +28,10 @@ import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.ui.theme.Black
 import com.linoop.quickcart.ui.theme.White
 import com.linoop.quickcart.ui.theme.Brown
+import com.linoop.quickcart.ui.theme.GrayShade1
 import com.linoop.quickcart.utils.onItemClick
 import com.linoop.quickcart.widgets.CoilImageLoader
+import com.linoop.quickcart.widgets.RatingBar
 
 @Composable
 fun DrawProductCardView(product: Product, onClick: onItemClick) {
@@ -33,12 +40,13 @@ fun DrawProductCardView(product: Product, onClick: onItemClick) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = dimensionResource(id = R.dimen.padding_large),
-                vertical = dimensionResource(id = R.dimen.padding_small)
+                horizontal = dimensionResource(id = R.dimen.padding_medium),
+                vertical = dimensionResource(id = R.dimen.padding_tiny)
             ),
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_radius_large)),
     ) {
         Row(modifier = Modifier
+            .background(if (isSystemInDarkTheme()) GrayShade1 else White)
             .fillMaxWidth()
             .clickable {
                 onClick.invoke(product.productId!!)
@@ -46,24 +54,31 @@ fun DrawProductCardView(product: Product, onClick: onItemClick) {
             CoilImageLoader(
                 imageUrl = product.thumbnail,
                 contentDesc = product.title,
-                modifier = Modifier.size(100.dp),
-                placeholder = R.drawable.baseline_broken_image_24
+                modifier = Modifier.size(dimensionResource(id = R.dimen.box_size_medium)),
+                placeholder = R.drawable.baseline_broken_image_24,
+                contentScale = ContentScale.FillBounds
             )
             Column(
                 modifier = Modifier
-                    .background(if (isSystemInDarkTheme()) Black else Brown)
-                    .padding(dimensionResource(id = R.dimen.padding_large)),
+                    .fillMaxWidth()
+                    .padding(dimensionResource(id = R.dimen.padding_medium))
             ) {
                 Text(
                     text = product.title,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = if (isSystemInDarkTheme()) White else Black
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.bodySmall
                 )
-                Text(
-                    text = product.category,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = if (isSystemInDarkTheme()) White else Black
-                )
+                Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.Bottom) {
+                    Text(text = "$${product.price}", style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        text = "(${product.discountPercentage}% Off)",
+                        modifier = Modifier.padding(
+                            dimensionResource(id = R.dimen.padding_small)
+                        ),
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+                RatingBar(rating = product.rating, starSize= dimensionResource(id = R.dimen.rating_bar_size_medium))
             }
         }
     }

@@ -39,7 +39,7 @@ fun ImageViewPager(modifier: Modifier, imageUrls: List<String>) {
                     contentDesc = stringResource(id = R.string.view_pager_image),
                     modifier = Modifier.fillMaxSize(),
                     placeholder = R.drawable.baseline_broken_image_24,
-                    contentScale = ContentScale.FillBounds
+                    contentScale = ContentScale.Fit
                 )
             }
         }

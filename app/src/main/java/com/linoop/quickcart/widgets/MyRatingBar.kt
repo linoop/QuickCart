@@ -18,7 +18,7 @@ import com.linoop.quickcart.utils.Constants.MAX_RATING
 fun RatingBar(
     rating: Float,
     maxRating: Int = MAX_RATING,
-    starSize: Dp = dimensionResource(id = R.dimen.rating_bar_size),
+    starSize: Dp = dimensionResource(id = R.dimen.rating_bar_size_large),
 ) {
     Row(modifier = Modifier) {
         repeat(maxRating) { index ->
