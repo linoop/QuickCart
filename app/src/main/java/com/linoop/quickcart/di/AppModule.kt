@@ -2,24 +2,14 @@ package com.linoop.quickcart.di
 
 import android.content.Context
 import androidx.room.Room
-import com.linoop.quickcart.product.repository.ProductRepositoryImpl
 import com.linoop.quickcart.network.ApiService
-import com.linoop.quickcart.home.repository.ProductListRepo
-import com.linoop.quickcart.home.repository.ProductListRepoImpl
-import com.linoop.quickcart.product.repository.ProductRepository
 import com.linoop.quickcart.storage.ProductDao
 import com.linoop.quickcart.storage.QuickCartDatabase
-import com.linoop.quickcart.home.usecase.GetProductsUseCase
-import com.linoop.quickcart.home.usecase.GetProductsUseCaseImpl
-import com.linoop.quickcart.product.usecase.GetProductByIdUseCase
-import com.linoop.quickcart.product.usecase.GetProductByIdUseCaseImpl
 import com.linoop.quickcart.utils.Constants.BASE_URL
 import com.linoop.quickcart.utils.Constants.DATABASE_NAME
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient

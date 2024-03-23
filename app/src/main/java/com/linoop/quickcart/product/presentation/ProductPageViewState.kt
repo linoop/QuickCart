@@ -8,22 +8,19 @@ import com.linoop.quickcart.R
 import com.linoop.quickcart.product.state.ProductPageUserState
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.Constants.API_FAILED
-import com.linoop.quickcart.utils.Constants.API_SUCCESS
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.widgets.ProgressDialog
 
 @Composable
 fun ProductPageViewState(
     showSnackBar: ShowSnackBar,
-    state: ProductPageUserState
+    state: ProductPageUserState,
+    drawContent: @Composable () -> Unit
 ) {
     val signupDataState = state.dataState.value
     signupDataState.apiState.ResolveState(
         loading = { ProgressDialog {} },
-        success = {
-            showSnackBar(signupDataState.message, API_SUCCESS, SnackbarDuration.Short)
-            state.dataState.value.apiState = ApiState.Initial
-        },
+        success = { drawContent.invoke() },
         error = {
             showSnackBar(signupDataState.message, API_FAILED, SnackbarDuration.Short)
             state.dataState.value.apiState = ApiState.Initial

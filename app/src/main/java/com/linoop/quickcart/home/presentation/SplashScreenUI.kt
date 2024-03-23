@@ -24,7 +24,7 @@ fun SplashScreenUI(
     navController: NavController = rememberNavController()
 ) {
     LaunchedEffect(Unit) {
-        delay(2000)
+        //delay(2000)
         gotoHome(navController)
     }
     DrawSplashScreen()
