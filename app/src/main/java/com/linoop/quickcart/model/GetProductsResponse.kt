@@ -1,6 +1,5 @@
 package com.linoop.quickcart.model
 
-
 import com.google.gson.annotations.SerializedName
 
 data class GetProductsResponse(

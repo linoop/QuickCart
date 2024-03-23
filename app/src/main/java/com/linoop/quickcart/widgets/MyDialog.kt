@@ -1,4 +1,4 @@
-package com.linoop.acronymapp.widgets
+package com.linoop.quickcart.widgets
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info

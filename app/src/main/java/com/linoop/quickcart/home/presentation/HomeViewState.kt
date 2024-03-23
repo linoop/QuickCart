@@ -6,7 +6,7 @@ import androidx.compose.ui.res.stringResource
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.Constants.API_FAILED
 import com.linoop.quickcart.utils.ShowSnackBar
-import com.linoop.acronymapp.widgets.DrawAlertDialog
+import com.linoop.quickcart.widgets.DrawAlertDialog
 import com.linoop.quickcart.widgets.ProgressDialog
 import com.linoop.quickcart.R
 import com.linoop.quickcart.home.state.HomePageUserState

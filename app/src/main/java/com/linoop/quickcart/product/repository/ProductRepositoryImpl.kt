@@ -1,6 +1,5 @@
 package com.linoop.quickcart.product.repository
 
-import com.linoop.quickcart.model.GetProductsResponse
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.network.ApiService
 import com.linoop.quickcart.utils.Constants.HTTP_200_OK

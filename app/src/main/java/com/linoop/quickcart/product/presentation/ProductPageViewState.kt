@@ -3,7 +3,7 @@ package com.linoop.quickcart.product.presentation
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.linoop.acronymapp.widgets.DrawAlertDialog
+import com.linoop.quickcart.widgets.DrawAlertDialog
 import com.linoop.quickcart.R
 import com.linoop.quickcart.product.state.ProductPageUserState
 import com.linoop.quickcart.utils.ApiState

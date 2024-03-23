@@ -4,13 +4,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.paging.PagingData
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.BaseState
 import com.linoop.quickcart.utils.Constants
 import com.linoop.quickcart.utils.StateHolder
-import kotlinx.coroutines.flow.MutableStateFlow
 
 @Stable
 data class ProductPageInitialValue(

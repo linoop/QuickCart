@@ -8,7 +8,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-
     @GET(ApiRoutes.GET_PRODUCTS)
     suspend fun getProducts(
         @Query("limit") limit: Int,
