@@ -14,7 +14,10 @@ import com.linoop.quickcart.home.presentation.HomePageUI
 import com.linoop.quickcart.home.presentation.SplashScreenUI
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.home.viewmodel.HomeViewModel
-import com.linoop.quickcart.home.presentation.CartPageUI
+import com.linoop.quickcart.cart.presentation.CartPageUI
+import com.linoop.quickcart.cart.transformation.CartViewModelToUserEvent
+import com.linoop.quickcart.cart.transformation.CartViewModelToUserState
+import com.linoop.quickcart.cart.viewmodel.CartViewModel
 import com.linoop.quickcart.product.presentation.ProductDetailsPageUI
 import com.linoop.quickcart.home.transformation.HomeViewModelToUserEvent
 import com.linoop.quickcart.home.transformation.HomeViewModelToUserState
@@ -65,7 +68,10 @@ fun NavigateToCartScreen(
     navController: NavController,
     showSnackBar: ShowSnackBar
 ) {
-    CartPageUI()
+    val viewModel = hiltViewModel<CartViewModel>()
+    val userState = CartViewModelToUserState().transform(viewModel)
+    val userEvent = CartViewModelToUserEvent().transform(viewModel)
+    CartPageUI(navController, showSnackBar, userState, userEvent)
 }
 
 @Composable
