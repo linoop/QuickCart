@@ -7,13 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.linoop.quickcart.model.GetProductsResponse
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.home.state.HomePageDataState
 import com.linoop.quickcart.home.usecase.GetProductsUseCase
-import com.linoop.quickcart.utils.ApiState
-import com.linoop.quickcart.utils.Resource
-import com.linoop.quickcart.utils.StateHolder
+import com.linoop.quickcart.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -22,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val useCase: GetProductsUseCase,
-    private val getProductsUseCase: com.linoop.quickcart.home.usecase.GetProductsUseCase,
+    private val getProductsUseCase: GetProductsUseCase,
 ) : ViewModel() {
 
     private val _queryErrorState: MutableState<Int?> = mutableStateOf(null)

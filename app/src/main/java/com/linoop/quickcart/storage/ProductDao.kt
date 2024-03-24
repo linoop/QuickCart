@@ -17,6 +17,9 @@ interface ProductDao {
     @Query("SELECT * FROM $PRODUCT_TABLE")
     fun getAllProducts(): List<Product>
 
+    @Insert
+    fun insertAll(vararg product: Product)
+
     @Delete
     fun delete(product: Product)
 }

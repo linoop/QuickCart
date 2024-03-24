@@ -14,7 +14,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -49,6 +51,12 @@ class ProductViewModelTest {
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `test get product by ID`() = runBlocking {
         `when`(apiService.getProductById(1)).thenReturn(Response.success(Product(brand = "abc")))
@@ -62,7 +70,7 @@ class ProductViewModelTest {
     fun `test add to Cart`() = runBlocking {
         `when`(productDao.insertProduct(Product(brand = "xyz"))).thenReturn(1)
         productViewModel.addToCart(Product(brand = "xyz"))
-        delay(510)
+        delay(520)
         assertThat(productViewModel.addToCartDataState.value.value.apiState).isEqualTo(ApiState.Success)
     }
 }

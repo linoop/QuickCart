@@ -65,7 +65,6 @@ dependencies {
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     testImplementation(libs.junit.v412)
-    testImplementation("junit:junit:4.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -81,6 +80,7 @@ dependencies {
     testImplementation (libs.kotlinx.coroutines.test)
     //Google truth library
     testImplementation (libs.truth)
+    androidTestImplementation (libs.truth)
     //Android testing core library
     testImplementation (libs.androidx.core.testing)
 

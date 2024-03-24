@@ -4,6 +4,7 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -17,12 +18,12 @@ class GetProductByIdUseCaseTest {
     fun setUp() {
         productByIdUseCase = Mockito.mock(GetProductByIdUseCase::class.java)
 
-        Mockito.`when`(productByIdUseCase.invoke(1)).thenReturn(flow {
-            emit(Resource.Success(Product(brand = "apple"), "Success"))
-        })
-        Mockito.`when`(productByIdUseCase.invoke(-1)).thenReturn(flow {
-            emit(Resource.Error(null, "Error"))
-        })
+        Mockito.`when`(productByIdUseCase.invoke(1)).thenReturn(
+            flowOf(Resource.Success(Product(brand = "apple"), "Success"))
+        )
+        Mockito.`when`(productByIdUseCase.invoke(-1)).thenReturn(
+            flowOf(Resource.Error(null, "Error"))
+        )
     }
 
     @Test
