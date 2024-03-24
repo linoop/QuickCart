@@ -64,12 +64,26 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.v412)
+    testImplementation("junit:junit:4.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Mockito library for testing
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.inline)
+    testImplementation (libs.mockito.junit.jupiter)
+    //Coroutine Test
+    testImplementation (libs.kotlinx.coroutines.test)
+    //Google truth library
+    testImplementation (libs.truth)
+    //Android testing core library
+    testImplementation (libs.androidx.core.testing)
+
 
     //Compose ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
