@@ -1,5 +1,6 @@
 package com.linoop.quickcart.product.repository
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.network.ApiService
@@ -17,6 +18,7 @@ import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -26,9 +28,12 @@ import retrofit2.Response
 @Suppress("DEPRECATION")
 class ProductRepositoryTest {
 
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
     private lateinit var productRepository: ProductRepository
 
-    @Mock
+
     lateinit var apiService: ApiService
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -47,7 +52,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `test get product by id success`() = runBlocking {
+    fun `test get product by id success`() = runTest {
         Mockito.`when`(apiService.getProductById(1)).thenReturn(
             Response.success(Product(brand = "apple"))
         )

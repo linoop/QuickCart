@@ -1,5 +1,6 @@
 package com.linoop.quickcart.product.usecase
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.product.repository.CartRepository
@@ -12,6 +13,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -20,9 +22,11 @@ import org.mockito.MockitoAnnotations
 @Suppress("DEPRECATION")
 class AddToCartUseCaseTest {
 
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
     private lateinit var aadToCartUseCase: AddToCartUseCase
 
-    @Mock
     lateinit var cartRepository: CartRepository
 
     @OptIn(ExperimentalCoroutinesApi::class)

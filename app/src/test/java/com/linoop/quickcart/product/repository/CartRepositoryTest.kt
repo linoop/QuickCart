@@ -4,22 +4,38 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.storage.ProductDao
 import com.linoop.quickcart.utils.Resource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
 
+@Suppress("DEPRECATION")
 class CartRepositoryTest {
 
     private lateinit var cartRepository: CartRepository
     private lateinit var productDao: ProductDao
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
+        Dispatchers.setMain(Dispatchers.Default)
+        MockitoAnnotations.initMocks(this)
         productDao = Mockito.mock(ProductDao::class.java)
         cartRepository = CartRepositoryImpl(productDao)
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
