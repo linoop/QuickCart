@@ -7,6 +7,7 @@ import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -38,7 +39,7 @@ class DeleteFormCartUseCaseTest {
     }
 
     @Test
-    fun `test remove from cart`() = runTest {
+    fun `test remove from cart`() = runBlocking {
         val testData = Product(brand = "Samsung")
         Mockito.`when`(cartRepository.deleteItem(testData))
             .thenReturn(flowOf(Resource.Success(true, "Success")))

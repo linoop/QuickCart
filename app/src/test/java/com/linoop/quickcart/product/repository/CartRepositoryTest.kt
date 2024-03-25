@@ -7,6 +7,7 @@ import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -39,7 +40,7 @@ class CartRepositoryTest {
     }
 
     @Test
-    fun `test insert a product into cart`() = runTest {
+    fun `test insert a product into cart`() = runBlocking {
         val product = Product(brand = "Samsung")
         Mockito.`when`(productDao.insertProduct(product)).thenReturn(1)
 

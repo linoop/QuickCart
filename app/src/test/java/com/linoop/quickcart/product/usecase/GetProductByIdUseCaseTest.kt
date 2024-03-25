@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -47,7 +48,7 @@ class GetProductByIdUseCaseTest {
     }
 
     @Test
-    fun `test get Product By ID error`() = runTest {
+    fun `test get Product By ID error`() = runBlocking {
         productByIdUseCase.invoke(-1).collect {
             Truth.assertThat(it.data).isNull()
             Truth.assertThat(it.message).isEqualTo("Error")
@@ -55,7 +56,7 @@ class GetProductByIdUseCaseTest {
     }
 
     @Test
-    fun `test get Product By ID success`() = runTest {
+    fun `test get Product By ID success`() = runBlocking {
         productByIdUseCase.invoke(1).collect {
             Truth.assertThat(it.data).isEqualTo(Product(brand = "apple"))
             Truth.assertThat(it.message).isEqualTo("Success")

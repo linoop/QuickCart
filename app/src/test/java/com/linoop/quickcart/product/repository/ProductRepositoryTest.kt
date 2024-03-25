@@ -52,7 +52,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `test get product by id success`() = runTest {
+    fun `test get product by id success`() = runBlocking {
         Mockito.`when`(apiService.getProductById(1)).thenReturn(
             Response.success(Product(brand = "apple"))
         )
@@ -65,7 +65,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `test get product by id error`() = runTest {
+    fun `test get product by id error`() = runBlocking {
         val responseBody: ResponseBody =
             "Response.error()".toResponseBody("application/json".toMediaTypeOrNull())
         Mockito.`when`(apiService.getProductById(-1)).thenReturn(

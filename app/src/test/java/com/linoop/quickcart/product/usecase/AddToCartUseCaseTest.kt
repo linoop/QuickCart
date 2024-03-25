@@ -8,6 +8,7 @@ import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -45,7 +46,7 @@ class AddToCartUseCaseTest {
     }
 
     @Test
-    fun `test aad to cart error`() = runTest {
+    fun `test aad to cart error`() = runBlocking {
         Mockito.`when`(cartRepository.invoke(Product())).thenReturn(
             flowOf(Resource.Error(null, "Error"))
         )
@@ -56,7 +57,7 @@ class AddToCartUseCaseTest {
     }
 
     @Test
-    fun `test aad to cart success`() = runTest {
+    fun `test aad to cart success`() = runBlocking {
         val product = Product(brand = "apple")
         Mockito.`when`(cartRepository.invoke(product)).thenReturn(
             flowOf(Resource.Success(1, "Success"))

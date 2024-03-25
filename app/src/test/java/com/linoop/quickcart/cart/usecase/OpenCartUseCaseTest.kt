@@ -7,6 +7,7 @@ import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -39,7 +40,7 @@ class OpenCartUseCaseTest {
     }
 
     @Test
-    fun `test open cart`() = runTest {
+    fun `test open cart`() = runBlocking {
         val products = listOf(
             Product(brand = "Samsung", title = "Galaxy"),
             Product(brand = "Apple", title = "iPhone"),

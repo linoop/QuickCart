@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -41,7 +42,7 @@ class GetProductsUseCaseTest {
 
 
     @Test
-    fun `test get products`() = runTest {
+    fun `test get products`() = runBlocking {
         val testData = PagingData.from(
             listOf(
                 Product(brand = "apple"),
