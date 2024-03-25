@@ -34,7 +34,7 @@ fun CartPageUI(
     userState: CartPageUserState,
     userEvent: CartPageUserEvent
 ) {
-    LaunchedEffect(key1 = userState.deleteItemDataState.value.apiState) { userEvent.openCart.invoke() }
+    LaunchedEffect(Unit) { userEvent.openCart.invoke() }
     DrawProductDetails(showSnackBar, navController, userState, userEvent)
 }
 
@@ -64,7 +64,8 @@ private fun DrawProductDetails(
             CartPageViewState(
                 navController = navController,
                 showSnackBar = showSnackBar,
-                state = userState
+                state = userState,
+                userEvent = userEvent
             ) {
                 DrawCartPageContent(userState, userEvent)
             }

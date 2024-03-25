@@ -67,6 +67,7 @@ class ProductViewModel @Inject constructor(
 
                 is Resource.Success -> {
                     val state = AddToCartDataState(apiState = ApiState.Success)
+                        .apply { id = resource.data ?: 0 }
                     _addToCartDataState.value = addToCartDataState.value.copy(value = state)
                 }
 

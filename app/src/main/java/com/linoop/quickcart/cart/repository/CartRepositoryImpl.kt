@@ -15,7 +15,7 @@ class CartRepositoryImpl @Inject constructor(
 ) : CartRepository {
     override suspend fun getAllItems(): Flow<Resource<List<Product>>> = flow {
         emit(Resource.Loading())
-        delay(500)
+        //delay(500)
         val items = dao.getAllProducts()
         if (items.isNotEmpty()) emit(Resource.Success(items, message = "Success"))
         else emit(Resource.Error(message = "No record found"))
@@ -23,7 +23,7 @@ class CartRepositoryImpl @Inject constructor(
 
     override suspend fun deleteItem(product: Product): Flow<Resource<Boolean>> = flow{
         emit(Resource.Loading())
-        delay(500)
+        //delay(500)
         dao.delete(product)
         emit(Resource.Success(true, message = "Success"))
     }

@@ -21,6 +21,7 @@ import com.linoop.quickcart.ui.theme.Black
 import com.linoop.quickcart.ui.theme.BlackShade
 import com.linoop.quickcart.ui.theme.Brown
 import com.linoop.quickcart.ui.theme.DarkBrownShade
+import com.linoop.quickcart.ui.theme.LightGray
 import com.linoop.quickcart.ui.theme.White
 import com.linoop.quickcart.utils.Constants.EMPTY
 import com.linoop.quickcart.utils.onClick
@@ -42,7 +43,7 @@ fun DrawTopAppBar(
                 Text(
                     text = title,
                     maxLines = 1,
-                    color = if (isSystemInDarkTheme()) White else BlackShade
+                    color = if (isSystemInDarkTheme()) White else LightGray
                 )
             },
             navigationIcon = {
@@ -50,7 +51,7 @@ fun DrawTopAppBar(
                     Icon(
                         imageVector = navigationIcon,
                         contentDescription = stringResource(id = R.string.nav_button),
-                        tint = if (isSystemInDarkTheme()) White else Black
+                        tint = if (isSystemInDarkTheme()) White else LightGray
                     )
                 }
             },
@@ -59,7 +60,7 @@ fun DrawTopAppBar(
                     Icon(
                         imageVector = actionIcon,
                         contentDescription = stringResource(id = R.string.action_button),
-                        tint = if (isSystemInDarkTheme()) White else Black
+                        tint = if (isSystemInDarkTheme()) White else LightGray
                     )
                 }
             },

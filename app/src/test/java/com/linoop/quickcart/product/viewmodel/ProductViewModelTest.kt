@@ -70,7 +70,7 @@ class ProductViewModelTest {
     fun `test add to Cart`() = runBlocking {
         `when`(productDao.insertProduct(Product(brand = "xyz"))).thenReturn(1)
         productViewModel.addToCart(Product(brand = "xyz"))
-        delay(520)
-        assertThat(productViewModel.addToCartDataState.value.value.apiState).isEqualTo(ApiState.Success)
+        delay(510)
+        assertThat(productViewModel.addToCartDataState.value.value.id).isEqualTo(1)
     }
 }
