@@ -1,4 +1,4 @@
-package com.linoop.quickcart
+package com.linoop.quickcart.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.linoop.quickcart.state.rememberAppState
+import com.linoop.quickcart.main.state.rememberAppState
 import com.linoop.quickcart.widgets.MySnackBar
 import com.linoop.quickcart.navigation.ScreenNav
 import com.linoop.quickcart.ui.theme.QuickCartTheme

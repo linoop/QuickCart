@@ -5,6 +5,10 @@ import com.linoop.quickcart.cart.state.CartPageUserState
 import com.linoop.quickcart.cart.viewmodel.CartViewModel
 import com.linoop.quickcart.utils.Converter
 
+/**
+ * CartViewModel User State Converter
+ * Converts CartViewModel to CartPageUserState
+ */
 class CartViewModelToUserState : Converter<CartViewModel, CartPageUserState> {
     override fun convert(input: CartViewModel) = with(input) {
         CartPageUserState(
@@ -14,6 +18,10 @@ class CartViewModelToUserState : Converter<CartViewModel, CartPageUserState> {
     }
 }
 
+/**
+ * CartViewModel User Event Converter
+ * Converts CartViewModel to CartPageUserState
+ */
 class CartViewModelToUserEvent : Converter<CartViewModel, CartPageUserEvent> {
     override fun convert(input: CartViewModel) = with(input) {
         CartPageUserEvent(

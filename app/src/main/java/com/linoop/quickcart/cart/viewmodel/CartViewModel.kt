@@ -8,7 +8,7 @@ import com.linoop.quickcart.cart.state.DeleteItemDataState
 import com.linoop.quickcart.cart.state.OpenCartDataState
 import com.linoop.quickcart.cart.usecase.DeleteFormCartUseCase
 import com.linoop.quickcart.cart.usecase.OpenCartUseCase
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.Resource
 import com.linoop.quickcart.utils.ViewState

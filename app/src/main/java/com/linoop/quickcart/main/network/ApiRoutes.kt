@@ -1,4 +1,4 @@
-package com.linoop.quickcart.network
+package com.linoop.quickcart.main.network
 
 object ApiRoutes {
     const val GET_PRODUCTS = "products"

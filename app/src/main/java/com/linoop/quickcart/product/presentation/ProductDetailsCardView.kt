@@ -19,7 +19,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.linoop.quickcart.R
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.ui.theme.GrayShade1
 import com.linoop.quickcart.ui.theme.White
 import com.linoop.quickcart.widgets.RatingBar

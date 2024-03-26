@@ -2,13 +2,13 @@ package com.linoop.quickcart.product.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.network.ApiService
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.product.repository.CartRepositoryImpl
 import com.linoop.quickcart.product.repository.ProductRepositoryImpl
 import com.linoop.quickcart.product.usecase.AddToCartUseCaseImpl
 import com.linoop.quickcart.product.usecase.GetProductByIdUseCaseImpl
-import com.linoop.quickcart.storage.ProductDao
+import com.linoop.quickcart.main.storage.ProductDao
 import com.linoop.quickcart.utils.ApiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

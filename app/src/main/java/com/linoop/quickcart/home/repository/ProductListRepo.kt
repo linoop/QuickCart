@@ -1,7 +1,7 @@
 package com.linoop.quickcart.home.repository
 
 import androidx.paging.PagingData
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import kotlinx.coroutines.flow.Flow
 
 fun interface ProductListRepo {

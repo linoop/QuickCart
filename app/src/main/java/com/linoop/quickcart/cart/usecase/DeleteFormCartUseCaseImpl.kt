@@ -1,7 +1,7 @@
 package com.linoop.quickcart.cart.usecase
 
 import com.linoop.quickcart.cart.repository.CartRepository
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.Resource
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow

@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.product.state.AddToCartDataState
 import com.linoop.quickcart.product.state.ProductPageDataState
 import com.linoop.quickcart.product.usecase.AddToCartUseCase
@@ -28,6 +28,11 @@ class ProductViewModel @Inject constructor(
 
     private val _addToCartDataState = mutableStateOf(ViewState(AddToCartDataState()))
     val addToCartDataState: State<ViewState<AddToCartDataState>> get() = _addToCartDataState
+
+    /**
+     * Get Product by ID is a function to fetch the Product details from the server
+     * @param productId is a [Int] parameter that received from the home page
+     */
     fun getProductByID(productId: Int?) = viewModelScope.launch {
         val errorID = InputValidator.validateProductId(productId)
         if (errorID == null) getProductById.invoke(productId!!).collect { response ->
@@ -57,6 +62,10 @@ class ProductViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Add to Cart function to save a product to Database
+     * @param product is type of [Product] which the user wish to add the the cart
+     */
     fun addToCart(product: Product) = viewModelScope.launch {
         addToCartUseCase.invoke(product).collect { resource ->
             when (resource) {

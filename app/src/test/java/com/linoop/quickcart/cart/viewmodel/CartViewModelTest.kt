@@ -4,8 +4,8 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.cart.repository.CartRepositoryImpl
 import com.linoop.quickcart.cart.usecase.DeleteFormCartUseCaseImpl
 import com.linoop.quickcart.cart.usecase.OpenCartUseCaseImpl
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.storage.ProductDao
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.storage.ProductDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay

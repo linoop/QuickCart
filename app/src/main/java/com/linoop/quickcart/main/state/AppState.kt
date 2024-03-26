@@ -1,4 +1,4 @@
-package com.linoop.quickcart.state
+package com.linoop.quickcart.main.state
 
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState

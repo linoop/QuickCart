@@ -1,7 +1,7 @@
 package com.linoop.quickcart.home.usecase
 
 import androidx.paging.PagingData
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.home.repository.ProductListRepo
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow

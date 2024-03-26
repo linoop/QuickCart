@@ -4,7 +4,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.storage.ProductDao
+import com.linoop.quickcart.main.storage.QuickCartDatabase
+import com.linoop.quickcart.main.model.Product
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

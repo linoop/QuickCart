@@ -1,7 +1,7 @@
-package com.linoop.quickcart.network
+package com.linoop.quickcart.main.network
 
-import com.linoop.quickcart.model.GetProductsResponse
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.GetProductsResponse
+import com.linoop.quickcart.main.model.Product
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

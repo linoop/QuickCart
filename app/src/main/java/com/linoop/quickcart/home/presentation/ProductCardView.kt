@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.linoop.quickcart.R
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.ui.theme.Black
 import com.linoop.quickcart.ui.theme.White
 import com.linoop.quickcart.ui.theme.Brown

@@ -1,7 +1,7 @@
 package com.linoop.quickcart.cart.repository
 
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.storage.ProductDao
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.storage.ProductDao
 import com.linoop.quickcart.utils.Resource
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.delay

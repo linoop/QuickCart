@@ -1,7 +1,7 @@
 package com.linoop.quickcart.product.repository
 
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.network.ApiService
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.utils.Constants.HTTP_200_OK
 import com.linoop.quickcart.utils.Resource
 import dagger.hilt.android.scopes.ActivityRetainedScoped

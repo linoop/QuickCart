@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.linoop.quickcart.home.presentation.HomePageUI
-import com.linoop.quickcart.home.presentation.SplashScreenUI
+import com.linoop.quickcart.main.SplashScreenUI
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.home.viewmodel.HomeViewModel
 import com.linoop.quickcart.cart.presentation.CartPageUI

@@ -1,4 +1,4 @@
-package com.linoop.quickcart.model
+package com.linoop.quickcart.main.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

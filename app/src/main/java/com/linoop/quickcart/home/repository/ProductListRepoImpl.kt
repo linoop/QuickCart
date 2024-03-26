@@ -5,8 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.network.ApiService
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.utils.Constants.MAX_PAGE_SIZE
 import com.linoop.quickcart.utils.Constants.STARTING_PAGE_INDEX
 import dagger.hilt.android.scopes.ActivityRetainedScoped

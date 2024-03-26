@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import com.linoop.quickcart.home.repository.ProductListRepo
 import com.linoop.quickcart.home.usecase.GetProductsUseCaseImpl
-import com.linoop.quickcart.model.Product
+import com.linoop.quickcart.main.model.Product
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

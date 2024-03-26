@@ -2,8 +2,8 @@ package com.linoop.quickcart.product.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth
-import com.linoop.quickcart.model.Product
-import com.linoop.quickcart.network.ApiService
+import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

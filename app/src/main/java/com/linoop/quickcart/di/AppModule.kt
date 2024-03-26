@@ -2,9 +2,9 @@ package com.linoop.quickcart.di
 
 import android.content.Context
 import androidx.room.Room
-import com.linoop.quickcart.network.ApiService
-import com.linoop.quickcart.storage.ProductDao
-import com.linoop.quickcart.storage.QuickCartDatabase
+import com.linoop.quickcart.main.network.ApiService
+import com.linoop.quickcart.main.storage.ProductDao
+import com.linoop.quickcart.main.storage.QuickCartDatabase
 import com.linoop.quickcart.utils.Constants.BASE_URL
 import com.linoop.quickcart.utils.Constants.DATABASE_NAME
 import dagger.Module

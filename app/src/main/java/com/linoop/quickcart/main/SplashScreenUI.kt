@@ -1,4 +1,4 @@
-package com.linoop.quickcart.home.presentation
+package com.linoop.quickcart.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
