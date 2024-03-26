@@ -88,7 +88,6 @@ private fun DrawHomePage(
 private fun DrawHomeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     navController: NavController,
-    userEvent: HomePageUserEvent
 ) {
     DrawTopAppBar(
         scrollBehavior = scrollBehavior,

@@ -4,7 +4,6 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import com.linoop.quickcart.widgets.DrawAlertDialog
 import com.linoop.quickcart.R
 import com.linoop.quickcart.navigation.Screen
 import com.linoop.quickcart.product.state.ProductPageUserState

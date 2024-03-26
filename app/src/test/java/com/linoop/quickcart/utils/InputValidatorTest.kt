@@ -1,9 +1,6 @@
 package com.linoop.quickcart.utils
 
 import com.google.common.truth.Truth
-import org.junit.Assert
-import org.junit.Assert.*
-
 import org.junit.Test
 
 class InputValidatorTest {

@@ -7,11 +7,8 @@ import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -20,7 +17,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import retrofit2.Response
@@ -34,7 +30,7 @@ class ProductRepositoryTest {
     private lateinit var productRepository: ProductRepository
 
 
-    lateinit var apiService: ApiService
+    private lateinit var apiService: ApiService
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before

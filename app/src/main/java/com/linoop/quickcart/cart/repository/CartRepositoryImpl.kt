@@ -4,7 +4,6 @@ import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.main.storage.ProductDao
 import com.linoop.quickcart.utils.Resource
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

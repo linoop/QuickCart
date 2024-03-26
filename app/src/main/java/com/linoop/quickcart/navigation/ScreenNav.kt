@@ -28,7 +28,6 @@ import com.linoop.quickcart.utils.Constants.PRODUCT_ID
 
 @Composable
 fun ScreenNav(
-    context: Context,
     navHostController: NavHostController,
     showSnackBar: ShowSnackBar
 ) {
