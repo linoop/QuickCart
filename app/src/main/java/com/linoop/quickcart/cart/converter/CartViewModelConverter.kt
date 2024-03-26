@@ -1,12 +1,12 @@
-package com.linoop.quickcart.cart.transformation
+package com.linoop.quickcart.cart.converter
 
 import com.linoop.quickcart.cart.state.CartPageUserEvent
 import com.linoop.quickcart.cart.state.CartPageUserState
 import com.linoop.quickcart.cart.viewmodel.CartViewModel
-import com.linoop.quickcart.utils.Transformer
+import com.linoop.quickcart.utils.Converter
 
-class CartViewModelToUserState : Transformer<CartViewModel, CartPageUserState> {
-    override fun transform(input: CartViewModel) = with(input) {
+class CartViewModelToUserState : Converter<CartViewModel, CartPageUserState> {
+    override fun convert(input: CartViewModel) = with(input) {
         CartPageUserState(
             openCartDataState = openCartDataState.value,
             deleteItemDataState = deleteItemDataState.value
@@ -14,8 +14,8 @@ class CartViewModelToUserState : Transformer<CartViewModel, CartPageUserState> {
     }
 }
 
-class CartViewModelToUserEvent : Transformer<CartViewModel, CartPageUserEvent> {
-    override fun transform(input: CartViewModel) = with(input) {
+class CartViewModelToUserEvent : Converter<CartViewModel, CartPageUserEvent> {
+    override fun convert(input: CartViewModel) = with(input) {
         CartPageUserEvent(
             openCart = { openCart() },
             deleteFromCart = { deleteFormCart(it) }

@@ -15,14 +15,14 @@ import com.linoop.quickcart.home.presentation.SplashScreenUI
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.home.viewmodel.HomeViewModel
 import com.linoop.quickcart.cart.presentation.CartPageUI
-import com.linoop.quickcart.cart.transformation.CartViewModelToUserEvent
-import com.linoop.quickcart.cart.transformation.CartViewModelToUserState
+import com.linoop.quickcart.cart.converter.CartViewModelToUserEvent
+import com.linoop.quickcart.cart.converter.CartViewModelToUserState
 import com.linoop.quickcart.cart.viewmodel.CartViewModel
 import com.linoop.quickcart.product.presentation.ProductDetailsPageUI
-import com.linoop.quickcart.home.transformation.HomeViewModelToUserEvent
-import com.linoop.quickcart.home.transformation.HomeViewModelToUserState
-import com.linoop.quickcart.product.transformation.ProductViewModelToUserEvent
-import com.linoop.quickcart.product.transformation.ProductViewmodelToUserState
+import com.linoop.quickcart.home.converter.HomeViewModelToUserEvent
+import com.linoop.quickcart.home.converter.HomeViewModelToUserState
+import com.linoop.quickcart.product.converter.ProductViewModelToUserEvent
+import com.linoop.quickcart.product.converter.ProductViewmodelToUserState
 import com.linoop.quickcart.product.viewmodel.ProductViewModel
 import com.linoop.quickcart.utils.Constants.PRODUCT_ID
 
@@ -69,8 +69,8 @@ fun NavigateToCartScreen(
     showSnackBar: ShowSnackBar
 ) {
     val viewModel = hiltViewModel<CartViewModel>()
-    val userState = CartViewModelToUserState().transform(viewModel)
-    val userEvent = CartViewModelToUserEvent().transform(viewModel)
+    val userState = CartViewModelToUserState().convert(viewModel)
+    val userEvent = CartViewModelToUserEvent().convert(viewModel)
     CartPageUI(navController, showSnackBar, userState, userEvent)
 }
 
@@ -82,8 +82,8 @@ fun NavigateToProductDetailsScreen(
 ) {
     val productId = backStackEntry.arguments?.getInt(PRODUCT_ID)
     val viewModel = hiltViewModel<ProductViewModel>()
-    val userState = ProductViewmodelToUserState().transform(viewModel)
-    val userEvent = ProductViewModelToUserEvent().transform(viewModel)
+    val userState = ProductViewmodelToUserState().convert(viewModel)
+    val userEvent = ProductViewModelToUserEvent().convert(viewModel)
     ProductDetailsPageUI(
         navController = navController,
         showSnackBar = showSnackBar,
@@ -99,8 +99,8 @@ fun NavigateToHomeScreen(
     showSnackBar: ShowSnackBar
 ) {
     val viewModel = hiltViewModel<HomeViewModel>()
-    val userState = HomeViewModelToUserState().transform(viewModel)
-    val userEvent = HomeViewModelToUserEvent().transform(viewModel)
+    val userState = HomeViewModelToUserState().convert(viewModel)
+    val userEvent = HomeViewModelToUserEvent().convert(viewModel)
     HomePageUI(
         navController = navController,
         showSnackBar = showSnackBar,

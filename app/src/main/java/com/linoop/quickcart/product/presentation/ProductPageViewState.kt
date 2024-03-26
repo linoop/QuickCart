@@ -30,11 +30,6 @@ fun ProductPageViewState(
             state.productDataState.value.apiState = ApiState.Initial
         }
     )
-    if (state.showInfo.value) DrawAlertDialog(
-        title = stringResource(id = R.string.app_name),
-        message = stringResource(id = R.string.app_desc),
-        onConfirmation = { state.showInfo.value = false }
-    )
 
     state.addToCartDataState.value.apiState.ResolveState(
         loading = { ProgressDialog {} },

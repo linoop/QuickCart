@@ -1,12 +1,12 @@
-package com.linoop.quickcart.product.transformation
+package com.linoop.quickcart.product.converter
 
 import com.linoop.quickcart.product.state.ProductPageUserEvent
 import com.linoop.quickcart.product.state.ProductPageUserState
 import com.linoop.quickcart.product.viewmodel.ProductViewModel
-import com.linoop.quickcart.utils.Transformer
+import com.linoop.quickcart.utils.Converter
 
-class ProductViewmodelToUserState : Transformer<ProductViewModel, ProductPageUserState> {
-    override fun transform(input: ProductViewModel) = with(input) {
+class ProductViewmodelToUserState : Converter<ProductViewModel, ProductPageUserState> {
+    override fun convert(input: ProductViewModel) = with(input) {
         ProductPageUserState(
             productDataState = productDataState.value,
             addToCartDataState = addToCartDataState.value
@@ -14,8 +14,8 @@ class ProductViewmodelToUserState : Transformer<ProductViewModel, ProductPageUse
     }
 }
 
-class ProductViewModelToUserEvent : Transformer<ProductViewModel, ProductPageUserEvent> {
-    override fun transform(input: ProductViewModel) = with(input) {
+class ProductViewModelToUserEvent : Converter<ProductViewModel, ProductPageUserEvent> {
+    override fun convert(input: ProductViewModel) = with(input) {
         ProductPageUserEvent(
             getProductById = { getProductByID(it) },
             addToCart = { addToCart(it) }

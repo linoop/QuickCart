@@ -12,7 +12,7 @@ import com.linoop.quickcart.product.usecase.GetProductByIdUseCase
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.InputValidator
 import com.linoop.quickcart.utils.Resource
-import com.linoop.quickcart.utils.StateHolder
+import com.linoop.quickcart.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,11 +23,11 @@ class ProductViewModel @Inject constructor(
     private val addToCartUseCase: AddToCartUseCase,
 ) : ViewModel() {
 
-    private val _productDataState = mutableStateOf(StateHolder(ProductPageDataState()))
-    val productDataState: State<StateHolder<ProductPageDataState>> get() = _productDataState
+    private val _productDataState = mutableStateOf(ViewState(ProductPageDataState()))
+    val productDataState: State<ViewState<ProductPageDataState>> get() = _productDataState
 
-    private val _addToCartDataState = mutableStateOf(StateHolder(AddToCartDataState()))
-    val addToCartDataState: State<StateHolder<AddToCartDataState>> get() = _addToCartDataState
+    private val _addToCartDataState = mutableStateOf(ViewState(AddToCartDataState()))
+    val addToCartDataState: State<ViewState<AddToCartDataState>> get() = _addToCartDataState
     fun getProductByID(productId: Int?) = viewModelScope.launch {
         val errorID = InputValidator.validateProductId(productId)
         if (errorID == null) getProductById.invoke(productId!!).collect { response ->

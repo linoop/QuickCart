@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -73,10 +72,7 @@ private fun DrawHomePage(
         },
         snackbarHost = { MySnackBar(snackBarHostState = snackBarState) },
     ) {
-        Column(
-            modifier = Modifier
-                .padding(it)
-        ) {
+        Column(modifier = Modifier.padding(it)) {
             HomeViewState(showSnackBar, userState)
             DrawHomeContent(
                 navController = navController,
@@ -98,9 +94,7 @@ private fun DrawHomeTopAppBar(
         scrollBehavior = scrollBehavior,
         title = stringResource(id = R.string.app_name),
         actionIcon = Icons.Default.ShoppingCart,
-        actionOnClick = {
-            navController.navigate(Screen.CartScreen.route)
-        }
+        actionOnClick = { navController.navigate(Screen.CartScreen.route) }
     )
 }
 
@@ -126,11 +120,11 @@ fun DrawHomeContent(
                 }
 
                 loadState.refresh is LoadState.Error -> {
-                    val error = moviePagingItems.loadState.refresh as LoadState.Error
+                    //val error = moviePagingItems.loadState.refresh as LoadState.Error
                     item {
                         DrawItemLoadErrorView(
                             modifier = Modifier.fillMaxWidth(),
-                            message = error.error.localizedMessage
+                            message = stringResource(id = R.string.product_list_load_error)
                         ) { userEvent.getProductList.invoke() }
                     }
                 }
@@ -140,11 +134,11 @@ fun DrawHomeContent(
                 }
 
                 loadState.append is LoadState.Error -> {
-                    val error = moviePagingItems.loadState.append as LoadState.Error
+                    //val error = moviePagingItems.loadState.append as LoadState.Error
                     item {
                         DrawItemLoadErrorView(
                             modifier = Modifier.fillMaxWidth(),
-                            message = error.error.localizedMessage
+                            message = stringResource(id = R.string.product_list_load_error)
                         ) { userEvent.getProductList.invoke() }
                     }
                 }

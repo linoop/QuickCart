@@ -12,7 +12,9 @@
     <string name="product_id_null_error">Product ID can\'t be null</string>
     <string name="database_error">Database Error</string>
     <string name="no_record_found">The cart is empty.</string>
+    <string name="product_list_load_error">There was an error encountered while loading products. Please verify your connection.</string>
 
+    <!--Short messages-->
     <string name="add_to_cart_success">The item has been added to the cart successfully.</string>
 
     <!--Content Descriptions-->

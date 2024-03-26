@@ -10,7 +10,6 @@ import com.linoop.quickcart.network.ApiService
 import com.linoop.quickcart.utils.Constants.MAX_PAGE_SIZE
 import com.linoop.quickcart.utils.Constants.STARTING_PAGE_INDEX
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -28,7 +27,6 @@ class ProductPagingSource(private val apiService: ApiService) : PagingSource<Int
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         return try {
             val currentPage = params.key ?: STARTING_PAGE_INDEX
-            //delay(1000)
             apiService.getProducts(10, currentPage).body().let { resp ->
                 LoadResult.Page(
                     data = resp?.products ?: listOf(),

@@ -56,7 +56,6 @@ class ProductViewModelTest {
         Dispatchers.resetMain()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `test get product by ID`() = runBlocking {
         `when`(apiService.getProductById(1)).thenReturn(Response.success(Product(brand = "abc")))

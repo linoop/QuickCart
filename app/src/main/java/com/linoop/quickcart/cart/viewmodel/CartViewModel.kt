@@ -11,7 +11,7 @@ import com.linoop.quickcart.cart.usecase.OpenCartUseCase
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.Resource
-import com.linoop.quickcart.utils.StateHolder
+import com.linoop.quickcart.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,11 +22,11 @@ class CartViewModel @Inject constructor(
     private val openCartUseCase: OpenCartUseCase,
     private val deleteFormCartUseCase: DeleteFormCartUseCase
 ) : ViewModel() {
-    private val _openCartDataState = mutableStateOf(StateHolder(OpenCartDataState()))
-    val openCartDataState: State<StateHolder<OpenCartDataState>> get() = _openCartDataState
+    private val _openCartDataState = mutableStateOf(ViewState(OpenCartDataState()))
+    val openCartDataState: State<ViewState<OpenCartDataState>> get() = _openCartDataState
 
-    private val _deleteItemDataState = mutableStateOf(StateHolder(DeleteItemDataState()))
-    val deleteItemDataState: State<StateHolder<DeleteItemDataState>> get() = _deleteItemDataState
+    private val _deleteItemDataState = mutableStateOf(ViewState(DeleteItemDataState()))
+    val deleteItemDataState: State<ViewState<DeleteItemDataState>> get() = _deleteItemDataState
     fun openCart() = viewModelScope.launch(Dispatchers.IO) {
         openCartUseCase.invoke().collect { response ->
             when (response) {

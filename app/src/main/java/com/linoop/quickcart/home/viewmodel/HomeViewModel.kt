@@ -1,8 +1,5 @@
 package com.linoop.quickcart.home.viewmodel
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -19,9 +16,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase,
 ) : ViewModel() {
-
-    private val _queryErrorState: MutableState<Int?> = mutableStateOf(null)
-    val queryErrorState: State<Int?> get() = _queryErrorState
 
     private val _productState: MutableStateFlow<PagingData<Product>> =
         MutableStateFlow(value = PagingData.empty())

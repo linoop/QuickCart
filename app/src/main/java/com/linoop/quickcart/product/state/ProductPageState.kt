@@ -1,19 +1,13 @@
 package com.linoop.quickcart.product.state
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.BaseState
-import com.linoop.quickcart.utils.Constants
-import com.linoop.quickcart.utils.StateHolder
+import com.linoop.quickcart.utils.ViewState
 
 data class ProductPageUserState(
-    val showInfo: MutableState<Boolean> = mutableStateOf(false),
-    val productDataState: StateHolder<ProductPageDataState> = StateHolder(ProductPageDataState()),
-    val addToCartDataState: StateHolder<AddToCartDataState> = StateHolder(AddToCartDataState()),
+    val productDataState: ViewState<ProductPageDataState> = ViewState(ProductPageDataState()),
+    val addToCartDataState: ViewState<AddToCartDataState> = ViewState(AddToCartDataState()),
 )
 
 data class ProductPageUserEvent(

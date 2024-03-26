@@ -2,11 +2,11 @@ package com.linoop.quickcart.cart.state
 
 import com.linoop.quickcart.model.Product
 import com.linoop.quickcart.utils.ApiState
-import com.linoop.quickcart.utils.StateHolder
+import com.linoop.quickcart.utils.ViewState
 
 data class CartPageUserState(
-    val openCartDataState: StateHolder<OpenCartDataState> = StateHolder(OpenCartDataState()),
-    val deleteItemDataState: StateHolder<DeleteItemDataState> = StateHolder(DeleteItemDataState()),
+    val openCartDataState: ViewState<OpenCartDataState> = ViewState(OpenCartDataState()),
+    val deleteItemDataState: ViewState<DeleteItemDataState> = ViewState(DeleteItemDataState()),
 )
 
 data class CartPageUserEvent(
