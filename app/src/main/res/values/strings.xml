@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">QuickCart</string>
 
-    <string name="app_desc">This application is a coding challenge for onboarding new members to the Albertsons project.</string>
+    <string name="app_desc">This application is a coding challenge for onboarding a new Android Developer to the project.</string>
 
 
     <string name="ok">OK</string>
