@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -67,6 +68,7 @@ private fun DrawHomePage(
             DrawHomeTopAppBar(
                 navController = navController,
                 scrollBehavior = scrollBehavior,
+                userState = userState
             )
         },
         snackbarHost = { MySnackBar(snackBarHostState = snackBarState) },
@@ -87,12 +89,15 @@ private fun DrawHomePage(
 private fun DrawHomeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     navController: NavController,
+    userState: HomePageUserState,
 ) {
     DrawTopAppBar(
         scrollBehavior = scrollBehavior,
+        navigationIcon = Icons.Default.Info,
         title = stringResource(id = R.string.app_name),
         actionIcon = Icons.Default.ShoppingCart,
-        actionOnClick = { navController.navigate(Screen.CartScreen.route) }
+        actionOnClick = { navController.navigate(Screen.CartScreen.route) },
+        navOnClick = { userState.showInfo.value = true }
     )
 }
 

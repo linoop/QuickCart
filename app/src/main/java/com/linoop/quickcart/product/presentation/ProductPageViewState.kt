@@ -25,7 +25,11 @@ fun ProductPageViewState(
         loading = { ProgressDialog {} },
         success = { drawContent.invoke() },
         error = {
-            showSnackBar(signupDataState.message, API_FAILED, SnackbarDuration.Short)
+            showSnackBar(
+                stringResource(id = R.string.product_details_load_error),
+                API_FAILED,
+                SnackbarDuration.Short
+            )
             state.productDataState.value.apiState = ApiState.Initial
         }
     )
