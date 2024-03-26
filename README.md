@@ -19,4 +19,11 @@ Welcome to the QuickCart Android Application! This application allows users to b
 - **Room Database**: Used for storing and managing cart data locally.
 - **Retrofit**: Utilized for making API calls to retrieve product information.
 - **Coil**: Used for loading and displaying product images.
+- **Dagger Hilt**: Dependency injection framework used for managing dependencies in the application.
 
+## Usage
+
+- Upon launching the application, users are presented with a list of available products.
+- Users can tap on a product to view its details.
+- From the product details screen, users can add the product to their cart.
+- Users can view and manage the contents of their cart by navigating to the cart screen.
