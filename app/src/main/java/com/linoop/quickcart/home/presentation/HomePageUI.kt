@@ -67,7 +67,6 @@ private fun DrawHomePage(
             DrawHomeTopAppBar(
                 navController = navController,
                 scrollBehavior = scrollBehavior,
-                userEvent = userEvent
             )
         },
         snackbarHost = { MySnackBar(snackBarHostState = snackBarState) },

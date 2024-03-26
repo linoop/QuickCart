@@ -32,10 +32,8 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         snackbarHost = { MySnackBar(snackBarHostState = appState.snackBarHostState) }
                     ) { padding ->
-                        val context = LocalContext.current.applicationContext
                         Column(modifier = Modifier.padding(padding)) {
                             ScreenNav(
-                                context = context,
                                 navHostController = appState.navController,
                                 showSnackBar = { message, actionLabel, duration ->
                                     appState.showSnackBar(
