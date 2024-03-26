@@ -14,7 +14,7 @@ Welcome to the QuickCart Android Application! This application allows users to b
 
 - **Jetpack Compose**: Used for building the user interface with modern, declarative UI components.
 - **Android SDK**: The application is developed using Kotlin and the Android SDK.
-- **LazyColumn*: Used for displaying the list of products.
+- **LazyColumn**: Used for displaying the list of products.
 - **Jetpack Compose Navigation**: Navigation components are used for navigating between different screens.
 - **Room Database**: Used for storing and managing cart data locally.
 - **Retrofit**: Utilized for making API calls to retrieve product information.
