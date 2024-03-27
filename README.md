@@ -30,8 +30,12 @@ Welcome to the QuickCart Android Application! This application allows users to b
 - Users can view and manage the contents of their cart by navigating to the cart screen.
 
 ## Screenshots
-<img src="/screenshots/product_list.png" alt="Product list screenshot" width="540"/> 
-<img src="/screenshots/product_details.png" alt="Product details screenshot" width="540"/>
-<img src="/screenshots/cart.png" alt="Cart screenshot" width="540"/>
+
+-Product List Screen
+<img src="/screenshots/product_list.png" alt="Product list screenshot" width="220"/>
+-Product Details Screen
+<img src="/screenshots/product_details.png" alt="Product details screenshot" width="220"/>
+-Cart Screen
+<img src="/screenshots/cart.png" alt="Cart screenshot" width="220"/>
 
 
