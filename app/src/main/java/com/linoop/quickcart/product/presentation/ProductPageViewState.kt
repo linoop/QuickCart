@@ -18,20 +18,14 @@ fun ProductPageViewState(
     navController: NavController,
     showSnackBar: ShowSnackBar,
     state: ProductPageUserState,
+    onApiFailed: @Composable () -> Unit,
     drawContent: @Composable () -> Unit
 ) {
     val signupDataState = state.productDataState.value
     signupDataState.apiState.ResolveState(
         loading = { ProgressDialog {} },
         success = { drawContent.invoke() },
-        error = {
-            showSnackBar(
-                stringResource(id = R.string.product_details_load_error),
-                API_FAILED,
-                SnackbarDuration.Short
-            )
-            state.productDataState.value.apiState = ApiState.Initial
-        }
+        error = { onApiFailed.invoke() }
     )
 
     state.addToCartDataState.value.apiState.ResolveState(

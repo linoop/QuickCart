@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -38,6 +39,7 @@ import com.linoop.quickcart.home.state.HomePageUserEvent
 import com.linoop.quickcart.home.state.HomePageUserState
 import com.linoop.quickcart.ui.theme.LightGray
 import com.linoop.quickcart.ui.theme.QuickCartTheme
+import com.linoop.quickcart.ui.theme.Red
 import com.linoop.quickcart.utils.DummyData.productList
 import com.linoop.quickcart.utils.onClick
 import com.linoop.quickcart.widgets.DrawTopAppBar
@@ -164,9 +166,12 @@ private fun DrawItemLoadingView() {
 }
 
 @Composable
-fun DrawItemLoadErrorView(modifier: Modifier, message: String?, retry: onClick) {
-    TextButton(modifier = modifier, onClick = { retry.invoke() }) {
-        Text(text = message.toString())
+private fun DrawItemLoadErrorView(modifier: Modifier, message: String?, retry: onClick) {
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = message.toString(), color = Red, textAlign = TextAlign.Center)
+        TextButton(modifier = Modifier, onClick = { retry.invoke() }) {
+            Text(text = stringResource(id = R.string.retry))
+        }
     }
 }
 
