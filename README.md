@@ -31,6 +31,12 @@ Welcome to the QuickCart Android Application! This application allows users to b
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/product_list.png)
-*Product List*
+![Product list screenshot](/screenshots/product_list.png)
+*Product List Screen*
+
+![Product details screenshot](/screenshots/product_details.png)
+*Product Details Screen*
+
+![Cart screenshot](/screenshots/cart.png)
+*Cart Screen*
 
