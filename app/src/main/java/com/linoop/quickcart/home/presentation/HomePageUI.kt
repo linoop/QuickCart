@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -34,6 +35,7 @@ import com.linoop.quickcart.navigation.Screen
 import com.linoop.quickcart.home.state.HomePageUserEvent
 import com.linoop.quickcart.home.state.HomePageUserState
 import com.linoop.quickcart.ui.theme.LightGray
+import com.linoop.quickcart.ui.theme.QuickCartTheme
 import com.linoop.quickcart.utils.onClick
 import com.linoop.quickcart.widgets.DrawTopAppBar
 
@@ -161,5 +163,17 @@ private fun DrawItemLoadingView() {
 fun DrawItemLoadErrorView(modifier: Modifier, message: String?, retry: onClick) {
     TextButton(modifier = modifier, onClick = { retry.invoke() }) {
         Text(text = message.toString())
+    }
+}
+
+@Preview
+@Composable
+private fun HomePageUIPreview() {
+    QuickCartTheme {
+        HomePageUI(
+            userState = HomePageUserState(
+
+            )
+        )
     }
 }
