@@ -1,5 +1,6 @@
 package com.linoop.quickcart.product.presentation
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,12 +20,14 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -41,10 +44,12 @@ import com.linoop.quickcart.product.state.ProductPageDataState
 import com.linoop.quickcart.product.state.ProductPageUserEvent
 import com.linoop.quickcart.product.state.ProductPageUserState
 import com.linoop.quickcart.ui.theme.QuickCartTheme
+import com.linoop.quickcart.ui.theme.Red
 import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.DummyData
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.utils.ViewState
+import com.linoop.quickcart.utils.onClick
 import com.linoop.quickcart.widgets.DrawTopAppBar
 import com.linoop.quickcart.widgets.ImageViewPager
 import com.linoop.quickcart.widgets.MySnackBar
@@ -59,7 +64,7 @@ fun ProductDetailsPageUI(
 ) {
     LaunchedEffect(key1 = Unit) { userEvent.getProductById.invoke(productId) }
 
-    DrawProductDetails(showSnackBar, navController, userState, userEvent)
+    DrawProductDetails(showSnackBar, navController, userState, userEvent, productId)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,7 +73,8 @@ private fun DrawProductDetails(
     showSnackBar: ShowSnackBar,
     navController: NavController,
     userState: ProductPageUserState,
-    userEvent: ProductPageUserEvent
+    userEvent: ProductPageUserEvent,
+    productId: Int?
 ) {
     val snackBarState = remember { SnackbarHostState() }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
@@ -88,7 +94,8 @@ private fun DrawProductDetails(
             ProductPageViewState(
                 navController = navController,
                 showSnackBar = showSnackBar,
-                state = userState
+                state = userState,
+                onApiFailed = { DrawProductLoadErrorView { userEvent.getProductById.invoke(productId) } }
             ) {
                 DrawProductPageContent(userState, userEvent)
             }
@@ -146,6 +153,26 @@ fun DrawAddToCartButton(
             style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+private fun DrawProductLoadErrorView(retry: onClick) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(dimensionResource(id = R.dimen.padding_small)),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(id = R.string.product_details_load_error),
+            color = Red,
+            textAlign = TextAlign.Center
+        )
+        TextButton(modifier = Modifier, onClick = { retry.invoke() }) {
+            Text(text = stringResource(id = R.string.retry))
+        }
     }
 }
 
