@@ -31,11 +31,11 @@ Welcome to the QuickCart Android Application! This application allows users to b
 
 ## Screenshots
 
--Product List Screen
+- Product List Screen
 <img src="/screenshots/product_list.png" alt="Product list screenshot" width="220"/>
--Product Details Screen
+- Product Details Screen
 <img src="/screenshots/product_details.png" alt="Product details screenshot" width="220"/>
--Cart Screen
+- Cart Screen
 <img src="/screenshots/cart.png" alt="Cart screenshot" width="220"/>
 
 
