@@ -32,23 +32,30 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.linoop.quickcart.R
 import com.linoop.quickcart.navigation.Screen
+import com.linoop.quickcart.product.state.ProductPageDataState
 import com.linoop.quickcart.product.state.ProductPageUserEvent
 import com.linoop.quickcart.product.state.ProductPageUserState
+import com.linoop.quickcart.ui.theme.QuickCartTheme
+import com.linoop.quickcart.utils.ApiState
+import com.linoop.quickcart.utils.DummyData
 import com.linoop.quickcart.utils.ShowSnackBar
+import com.linoop.quickcart.utils.ViewState
 import com.linoop.quickcart.widgets.DrawTopAppBar
 import com.linoop.quickcart.widgets.ImageViewPager
 import com.linoop.quickcart.widgets.MySnackBar
 
 @Composable
 fun ProductDetailsPageUI(
-    showSnackBar: ShowSnackBar,
-    navController: NavController,
-    userState: ProductPageUserState,
-    userEvent: ProductPageUserEvent,
-    productId: Int?
+    showSnackBar: ShowSnackBar = { _, _, _ -> },
+    navController: NavController = rememberNavController(),
+    userState: ProductPageUserState = ProductPageUserState(),
+    userEvent: ProductPageUserEvent = ProductPageUserEvent(),
+    productId: Int? = null,
 ) {
     LaunchedEffect(key1 = Unit) { userEvent.getProductById.invoke(productId) }
 
@@ -158,4 +165,12 @@ private fun DrawProductPageTopAppBar(
         navOnClick = { navController.popBackStack() },
         actionOnClick = { navController.navigate(Screen.CartScreen.route) }
     )
+}
+
+@Preview
+@Composable
+private fun ProductDetailsPageUIPreview() {
+    val productDataState = ViewState(ProductPageDataState(DummyData.product, ApiState.Success))
+    val state = ProductPageUserState(productDataState = productDataState)
+    QuickCartTheme { ProductDetailsPageUI(userState = state) }
 }

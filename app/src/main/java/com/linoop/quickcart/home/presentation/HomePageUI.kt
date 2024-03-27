@@ -26,7 +26,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.widgets.MySnackBar
@@ -36,15 +38,17 @@ import com.linoop.quickcart.home.state.HomePageUserEvent
 import com.linoop.quickcart.home.state.HomePageUserState
 import com.linoop.quickcart.ui.theme.LightGray
 import com.linoop.quickcart.ui.theme.QuickCartTheme
+import com.linoop.quickcart.utils.DummyData.productList
 import com.linoop.quickcart.utils.onClick
 import com.linoop.quickcart.widgets.DrawTopAppBar
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 fun HomePageUI(
-    navController: NavController,
-    showSnackBar: ShowSnackBar,
-    userState: HomePageUserState,
-    userEvent: HomePageUserEvent
+    navController: NavController = rememberNavController(),
+    showSnackBar: ShowSnackBar = { _, _, _ -> },
+    userState: HomePageUserState = HomePageUserState(),
+    userEvent: HomePageUserEvent = HomePageUserEvent()
 ) {
     DrawHomePage(
         navController = navController,
@@ -169,11 +173,7 @@ fun DrawItemLoadErrorView(modifier: Modifier, message: String?, retry: onClick) 
 @Preview
 @Composable
 private fun HomePageUIPreview() {
-    QuickCartTheme {
-        HomePageUI(
-            userState = HomePageUserState(
-
-            )
-        )
-    }
+    val testData = PagingData.from(productList)
+    val userState = HomePageUserState(productPagingItems = MutableStateFlow(testData))
+    QuickCartTheme { HomePageUI(userState = userState) }
 }

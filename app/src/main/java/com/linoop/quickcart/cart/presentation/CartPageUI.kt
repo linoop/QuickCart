@@ -19,20 +19,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.linoop.quickcart.R
 import com.linoop.quickcart.cart.state.CartPageUserEvent
 import com.linoop.quickcart.cart.state.CartPageUserState
+import com.linoop.quickcart.cart.state.OpenCartDataState
+import com.linoop.quickcart.ui.theme.QuickCartTheme
+import com.linoop.quickcart.utils.ApiState
+import com.linoop.quickcart.utils.DummyData
 import com.linoop.quickcart.utils.ShowSnackBar
+import com.linoop.quickcart.utils.ViewState
 import com.linoop.quickcart.widgets.DrawTopAppBar
 import com.linoop.quickcart.widgets.MySnackBar
 
 @Composable
 fun CartPageUI(
-    navController: NavController,
-    showSnackBar: ShowSnackBar,
-    userState: CartPageUserState,
-    userEvent: CartPageUserEvent
+    navController: NavController = rememberNavController(),
+    showSnackBar: ShowSnackBar = { _, _, _ -> },
+    userState: CartPageUserState = CartPageUserState(),
+    userEvent: CartPageUserEvent = CartPageUserEvent()
 ) {
     LaunchedEffect(Unit) { userEvent.openCart.invoke() }
     DrawProductDetails(showSnackBar, navController, userState, userEvent)
@@ -99,4 +106,13 @@ fun DrawCartPageTopAppBar(
         navigationIcon = Icons.Default.KeyboardArrowLeft,
         navOnClick = { navController.popBackStack() },
     )
+}
+
+@Preview
+@Composable
+private fun CartPageUIPreview() {
+    val dataState = ViewState(OpenCartDataState(DummyData.productList, ApiState.Success))
+    QuickCartTheme {
+        CartPageUI(userState = CartPageUserState(openCartDataState = dataState))
+    }
 }
