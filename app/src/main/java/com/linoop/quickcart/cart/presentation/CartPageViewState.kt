@@ -3,7 +3,6 @@ package com.linoop.quickcart.cart.presentation
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import com.linoop.quickcart.R
 import com.linoop.quickcart.cart.state.CartPageUserEvent
 import com.linoop.quickcart.cart.state.CartPageUserState

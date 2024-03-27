@@ -80,14 +80,7 @@ private fun DrawProductDetails(
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            DrawProductPageTopAppBar(
-                navController = navController,
-                scrollBehavior = scrollBehavior,
-                userState = userState,
-                userEvent = userEvent
-            )
-        },
+        topBar = { DrawProductPageTopAppBar(scrollBehavior, navController, userState) },
         snackbarHost = { MySnackBar(snackBarHostState = snackBarState) },
     ) {
         Box(modifier = Modifier.padding(it)) {
@@ -182,7 +175,6 @@ private fun DrawProductPageTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     navController: NavController,
     userState: ProductPageUserState,
-    userEvent: ProductPageUserEvent
 ) {
     DrawTopAppBar(
         scrollBehavior = scrollBehavior,

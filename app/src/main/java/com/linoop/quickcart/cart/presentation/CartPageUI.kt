@@ -15,7 +15,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
@@ -42,7 +41,6 @@ import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.DummyData
 import com.linoop.quickcart.utils.ShowSnackBar
 import com.linoop.quickcart.utils.ViewState
-import com.linoop.quickcart.utils.onClick
 import com.linoop.quickcart.widgets.DrawTopAppBar
 import com.linoop.quickcart.widgets.MySnackBar
 
