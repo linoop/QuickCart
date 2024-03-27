@@ -28,3 +28,9 @@ Welcome to the QuickCart Android Application! This application allows users to b
 - Users can tap on a product to view its details.
 - From the product details screen, users can add the product to their cart.
 - Users can view and manage the contents of their cart by navigating to the cart screen.
+
+## Screenshots
+
+![Screenshot 1](/screenshots/product_list.png)
+*Product List*
+
