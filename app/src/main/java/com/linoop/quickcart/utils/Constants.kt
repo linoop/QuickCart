@@ -21,11 +21,6 @@ object Constants {
     const val HTTP_200_OK = 200
 
     //Network API Header
-    const val AUTHORIZATION = "Authorization"
-    const val ACCEPT = "Accept"
-    const val ANY_MEDIA_TYPE = "*/*"
-    const val CONTENT_TYPE = "Content-Type"
-    const val APPLICATION_JSON = "Application/json"
     const val USER_AGENT = "User-Agent"
     const val USER_AGENT_VALUE = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 
