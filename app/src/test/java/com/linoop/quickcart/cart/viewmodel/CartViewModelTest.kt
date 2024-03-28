@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.linoop.quickcart.cart.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
