@@ -31,6 +31,7 @@
     <string name="clear_button">Clear Button</string>
     <string name="action_button">Action Button</string>
     <string name="cart_is_empty">Cart is Empty</string>
+    <string name="connection_error">Connection Error</string>
     <string name="nav_button">Navigation Button</string>
     <string name="information_icon">Information Icon</string>
     <string name="view_pager_image">View Pager Image</string>

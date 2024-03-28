@@ -133,7 +133,7 @@ fun DrawCartPageTopAppBar(
 @Preview
 @Composable
 private fun CartPageUIPreview() {
-    val dataState = ViewState(OpenCartDataState(DummyData.productList, ApiState.Error))
+    val dataState = ViewState(OpenCartDataState(DummyData.productList, ApiState.Success))
     QuickCartTheme {
         CartPageUI(userState = CartPageUserState(openCartDataState = dataState))
     }

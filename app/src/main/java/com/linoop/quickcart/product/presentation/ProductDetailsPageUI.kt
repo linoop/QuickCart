@@ -1,5 +1,6 @@
 package com.linoop.quickcart.product.presentation
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -158,6 +161,11 @@ private fun DrawProductLoadErrorView(retry: onClick) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Image(
+            modifier = Modifier.size(dimensionResource(id = R.dimen.box_size_large)),
+            painter = painterResource(id = R.drawable.cloud_error),
+            contentDescription = stringResource(id = R.string.connection_error)
+        )
         Text(
             text = stringResource(id = R.string.product_details_load_error),
             color = Red,
@@ -189,7 +197,7 @@ private fun DrawProductPageTopAppBar(
 @Preview
 @Composable
 private fun ProductDetailsPageUIPreview() {
-    val productDataState = ViewState(ProductPageDataState(DummyData.product, ApiState.Success))
+    val productDataState = ViewState(ProductPageDataState(DummyData.product, ApiState.Error))
     val state = ProductPageUserState(productDataState = productDataState)
     QuickCartTheme { ProductDetailsPageUI(userState = state) }
 }
