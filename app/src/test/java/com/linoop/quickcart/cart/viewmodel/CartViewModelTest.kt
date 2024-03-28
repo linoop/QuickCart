@@ -15,7 +15,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -71,7 +70,7 @@ class CartViewModelTest {
         Mockito.`when`(cartRepository.getAllItems())
             .thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
-        testScheduler.apply { advanceTimeBy(100L); runCurrent() }
+        advanceUntilIdle()
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }
