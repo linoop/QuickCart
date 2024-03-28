@@ -197,7 +197,7 @@ private fun DrawProductPageTopAppBar(
 @Preview
 @Composable
 private fun ProductDetailsPageUIPreview() {
-    val productDataState = ViewState(ProductPageDataState(DummyData.product, ApiState.Error))
+    val productDataState = ViewState(ProductPageDataState(DummyData.product, ApiState.Success))
     val state = ProductPageUserState(productDataState = productDataState)
     QuickCartTheme { ProductDetailsPageUI(userState = state) }
 }
