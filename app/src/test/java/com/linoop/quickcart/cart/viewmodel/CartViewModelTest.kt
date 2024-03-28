@@ -4,6 +4,7 @@ package com.linoop.quickcart.cart.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
+import com.linoop.quickcart.MainCoroutineRule
 import com.linoop.quickcart.cart.repository.CartRepository
 import com.linoop.quickcart.cart.usecase.DeleteFormCartUseCaseImpl
 import com.linoop.quickcart.cart.usecase.OpenCartUseCaseImpl
@@ -14,6 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -28,6 +30,9 @@ import org.mockito.MockitoAnnotations
 @Suppress("DEPRECATION")
 @ExperimentalCoroutinesApi
 class CartViewModelTest {
+
+    @get:Rule
+    val mainCoroutineRule = MainCoroutineRule()
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -63,8 +68,10 @@ class CartViewModelTest {
             Product(brand = "apple"),
             Product(brand = "samsung"),
         )
-        Mockito.`when`(cartRepository.getAllItems()).thenReturn(flowOf(Resource.Success(testData, "Success")))
+        Mockito.`when`(cartRepository.getAllItems())
+            .thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
+        testScheduler.apply { advanceTimeBy(100L); runCurrent() }
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }
