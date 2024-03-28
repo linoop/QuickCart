@@ -65,7 +65,6 @@ class CartViewModelTest {
         )
         Mockito.`when`(cartRepository.getAllItems()).thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
-        advanceUntilIdle()
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }
