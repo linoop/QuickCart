@@ -85,7 +85,7 @@ jobs:
           path: app/build/reports/androidTests/connected/
 
   package:
-    needs: [ static-code-analysis ]
+    needs: [ instrumentation-test ]
     name: Generate APK
     runs-on: ubuntu-latest
     steps:
