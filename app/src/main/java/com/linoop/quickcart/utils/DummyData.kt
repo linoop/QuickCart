@@ -26,6 +26,17 @@ object DummyData {
             category = "Smart Phone",
             description = "iPhone 15 Plus"
         ),
+        Product(
+            brand = "Mi",
+            title = "Redmi",
+            price = 50,
+            discountPercentage = 20f,
+            rating = 3f,
+            stock = 10,
+            thumbnail = "https://cdn.dummyjson.com/product-images/14/2.jpg",
+            category = "Smart Phone",
+            description = "Redmi note 10"
+        ),
     )
 
     val product = Product(
