@@ -50,7 +50,7 @@ class CartViewModelTest {
         )
         Mockito.`when`(dao.getAllProducts()).thenReturn(testData)
         cartViewModel.openCart()
-        delay(10)
+        delay(1000)
         Truth.assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }

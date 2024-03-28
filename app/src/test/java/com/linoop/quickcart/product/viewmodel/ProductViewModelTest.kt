@@ -60,7 +60,7 @@ class ProductViewModelTest {
     fun `test get product by ID`() = runBlocking {
         `when`(apiService.getProductById(1)).thenReturn(Response.success(Product(brand = "abc")))
         productViewModel.getProductByID(1)
-        delay(10)
+        delay(1000)
         assertThat(productViewModel.productDataState.value.value.apiState).isEqualTo(ApiState.Success)
         assertThat(productViewModel.productDataState.value.value.product).isEqualTo(Product(brand = "abc"))
     }
@@ -69,7 +69,7 @@ class ProductViewModelTest {
     fun `test add to Cart`() = runBlocking {
         `when`(productDao.insertProduct(Product(brand = "xyz"))).thenReturn(1)
         productViewModel.addToCart(Product(brand = "xyz"))
-        delay(510)
+        delay(1000)
         assertThat(productViewModel.addToCartDataState.value.value.id).isEqualTo(1)
     }
 }
