@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.linoop.quickcart.product.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -24,7 +26,6 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import retrofit2.Response
 
 @Suppress("DEPRECATION")
 @ExperimentalCoroutinesApi
