@@ -12,6 +12,7 @@ import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
@@ -46,8 +47,8 @@ class CartViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
+        MockitoAnnotations.initMocks(this)
         cartRepository = Mockito.mock(CartRepository::class.java)
         val openCartUseCase = OpenCartUseCaseImpl(cartRepository)
         val deleteFormCartUseCase = DeleteFormCartUseCaseImpl(cartRepository)
@@ -70,7 +71,7 @@ class CartViewModelTest {
         Mockito.`when`(cartRepository.getAllItems())
             .thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
-        advanceUntilIdle()
+        delay(1000) //advanceUntilIdle()
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }

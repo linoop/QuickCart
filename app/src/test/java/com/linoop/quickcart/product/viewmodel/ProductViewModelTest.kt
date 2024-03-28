@@ -46,8 +46,8 @@ class ProductViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
+        MockitoAnnotations.initMocks(this)
         productViewModel = ProductViewModel(
             getProductById = GetProductByIdUseCaseImpl(productRepository),
             addToCartUseCase = AddToCartUseCaseImpl(cartRepository)
