@@ -65,7 +65,7 @@ class CartViewModelTest {
         testScope.cleanupTestCoroutines()
     }
 
-    @Test
+   /* @Test
     fun `test open cart`() = runBlocking {
         val testData = listOf(
             Product(brand = "apple"),
@@ -76,7 +76,7 @@ class CartViewModelTest {
         cartViewModel.openCart()
         delay(10)
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
-    }
+    }*/
 
     @Test
     fun `test openCart`() = testScope.runBlockingTest {
