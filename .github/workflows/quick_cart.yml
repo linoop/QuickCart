@@ -23,6 +23,11 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Upload Build report
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build.html
+          path: app/build/reports/build-results-debug.html
 
   lint:
     needs: [ build ]
