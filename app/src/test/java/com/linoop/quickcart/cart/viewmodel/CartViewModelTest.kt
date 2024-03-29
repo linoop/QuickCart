@@ -79,7 +79,7 @@ class CartViewModelTest {
     }*/
 
     @Test
-    fun `test openCart`() = testScope.runBlockingTest {
+    fun `test openCart`() = runBlocking {
         val testData = listOf(
             Product(brand = "apple"),
             Product(brand = "samsung")
@@ -87,7 +87,7 @@ class CartViewModelTest {
         val mockSuccessResponse = Resource.Success(testData, "Success")
         Mockito.`when`(cartRepository.getAllItems()).thenReturn(flowOf(mockSuccessResponse))
         cartViewModel.openCart()
-        testScheduler.apply { advanceTimeBy(100);runCurrent() }
+        delay(100)//testScheduler.apply { advanceTimeBy(100);runCurrent() }
         assertThat(cartViewModel.openCartDataState.value.value.apiState).isEqualTo(ApiState.Success)
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
