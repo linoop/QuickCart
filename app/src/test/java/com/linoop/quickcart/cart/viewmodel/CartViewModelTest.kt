@@ -71,7 +71,7 @@ class CartViewModelTest {
         Mockito.`when`(cartRepository.getAllItems())
             .thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
-        delay(1000) //advanceUntilIdle()
+        advanceUntilIdle()
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }
