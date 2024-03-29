@@ -9,13 +9,16 @@ import com.linoop.quickcart.cart.repository.CartRepository
 import com.linoop.quickcart.cart.usecase.DeleteFormCartUseCaseImpl
 import com.linoop.quickcart.cart.usecase.OpenCartUseCaseImpl
 import com.linoop.quickcart.main.model.Product
+import com.linoop.quickcart.utils.ApiState
 import com.linoop.quickcart.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -63,7 +66,7 @@ class CartViewModelTest {
     }
 
     @Test
-    fun `test open cart`() = testScope.runBlockingTest {
+    fun `test open cart`() = runBlocking {
         val testData = listOf(
             Product(brand = "apple"),
             Product(brand = "samsung"),
@@ -71,7 +74,22 @@ class CartViewModelTest {
         Mockito.`when`(cartRepository.getAllItems())
             .thenReturn(flowOf(Resource.Success(testData, "Success")))
         cartViewModel.openCart()
-        advanceUntilIdle()
+        delay(10)
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
+
+    @Test
+    fun `test openCart`() = testScope.runBlockingTest {
+        val testData = listOf(
+            Product(brand = "apple"),
+            Product(brand = "samsung")
+        )
+        val mockSuccessResponse = Resource.Success(testData, "Success")
+        Mockito.`when`(cartRepository.getAllItems()).thenReturn(flowOf(mockSuccessResponse))
+        cartViewModel.openCart()
+        testScheduler.apply { advanceTimeBy(0);runCurrent() }
+        assertThat(cartViewModel.openCartDataState.value.value.apiState).isEqualTo(ApiState.Success)
+        assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
+    }
+
 }
