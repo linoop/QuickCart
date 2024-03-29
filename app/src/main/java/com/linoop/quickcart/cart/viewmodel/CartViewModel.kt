@@ -15,6 +15,7 @@ import com.linoop.quickcart.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,23 +30,25 @@ class CartViewModel @Inject constructor(
     val deleteItemDataState: State<ViewState<DeleteItemDataState>> get() = _deleteItemDataState
     fun openCart() = viewModelScope.launch(Dispatchers.IO) {
         openCartUseCase.invoke().collect { response ->
-            when (response) {
-                is Resource.Loading -> {
-                    val state = OpenCartDataState(apiState = ApiState.Loading)
-                    _openCartDataState.value = openCartDataState.value.copy(value = state)
-                }
-
-                is Resource.Success -> {
-                    val state = OpenCartDataState().apply {
-                        apiState = ApiState.Success
-                        products = response.data ?: listOf()
+            withContext(Dispatchers.Main){
+                when (response) {
+                    is Resource.Loading -> {
+                        val state = OpenCartDataState(apiState = ApiState.Loading)
+                        _openCartDataState.value = openCartDataState.value.copy(value = state)
                     }
-                    _openCartDataState.value = openCartDataState.value.copy(value = state)
-                }
 
-                is Resource.Error -> {
-                    val state = OpenCartDataState(apiState = ApiState.Error)
-                    _openCartDataState.value = openCartDataState.value.copy(value = state)
+                    is Resource.Success -> {
+                        val state = OpenCartDataState().apply {
+                            apiState = ApiState.Success
+                            products = response.data ?: listOf()
+                        }
+                        _openCartDataState.value = openCartDataState.value.copy(value = state)
+                    }
+
+                    is Resource.Error -> {
+                        val state = OpenCartDataState(apiState = ApiState.Error)
+                        _openCartDataState.value = openCartDataState.value.copy(value = state)
+                    }
                 }
             }
         }
