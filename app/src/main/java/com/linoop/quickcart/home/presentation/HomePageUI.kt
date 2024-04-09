@@ -115,16 +115,16 @@ fun DrawHomeContent(
     userState: HomePageUserState,
     userEvent: HomePageUserEvent
 ) {
-    val moviePagingItems = userState.productPagingItems.collectAsLazyPagingItems()
+    val productPagingItems = userState.productPagingItems.collectAsLazyPagingItems()
     LazyColumn(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small))) {
-        items(moviePagingItems.itemCount) { index ->
-            moviePagingItems[index]?.let { product ->
+        items(productPagingItems.itemCount) { index ->
+            productPagingItems[index]?.let { product ->
                 DrawProductCardView(product = product) { id ->
                     navController.navigate(Screen.ProductDetailsScreen.route.plus("/${id}"))
                 }
             }
         }
-        moviePagingItems.apply {
+        productPagingItems.apply {
             when {
                 loadState.refresh is LoadState.Loading -> {
                     item { DrawItemLoadingView() }
