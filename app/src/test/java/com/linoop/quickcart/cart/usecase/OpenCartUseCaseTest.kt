@@ -4,19 +4,18 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.cart.repository.CartRepository
 import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.Resource
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-@Suppress("DEPRECATION")
 class OpenCartUseCaseTest {
 
     private lateinit var openCartUseCase: OpenCartUseCase
@@ -26,8 +25,7 @@ class OpenCartUseCaseTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Default)
-        MockitoAnnotations.initMocks(this)
-        cartRepository = Mockito.mock(CartRepository::class.java)
+        cartRepository = mockk<CartRepository>()
         openCartUseCase = OpenCartUseCaseImpl(cartRepository)
     }
 
@@ -38,17 +36,17 @@ class OpenCartUseCaseTest {
     }
 
     @Test
-    fun `test open cart`() = runBlocking {
+    fun `test open cart`() = runTest {
         val products = listOf(
             Product(brand = "Samsung", title = "Galaxy"),
             Product(brand = "Apple", title = "iPhone"),
             Product(brand = "Mi", title = "Redmi"),
         )
-        Mockito.`when`(cartRepository.getAllItems())
-            .thenReturn(flowOf(Resource.Success(products, "Success")))
+        coEvery { cartRepository.getAllItems() } returns flowOf(Resource.Success(products, "Success"))
         openCartUseCase.invoke().collect {
             if (it is Resource.Success) {
                 Truth.assertThat(it.data).isEqualTo(products)
+                Truth.assertThat(it.message).isEqualTo("Success")
             }
         }
     }

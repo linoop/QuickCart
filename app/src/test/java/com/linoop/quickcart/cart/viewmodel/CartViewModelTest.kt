@@ -10,13 +10,14 @@ import com.linoop.quickcart.cart.usecase.DeleteFormCartUseCaseImpl
 import com.linoop.quickcart.cart.usecase.OpenCartUseCaseImpl
 import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.Resource
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
@@ -24,10 +25,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-@Suppress("DEPRECATION")
 @ExperimentalCoroutinesApi
 class CartViewModelTest {
 
@@ -48,8 +46,7 @@ class CartViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        MockitoAnnotations.initMocks(this)
-        cartRepository = Mockito.mock(CartRepository::class.java)
+        cartRepository = mockk<CartRepository>()
         val openCartUseCase = OpenCartUseCaseImpl(cartRepository)
         val deleteFormCartUseCase = DeleteFormCartUseCaseImpl(cartRepository)
         cartViewModel = CartViewModel(openCartUseCase, deleteFormCartUseCase)
@@ -68,10 +65,10 @@ class CartViewModelTest {
             Product(brand = "apple"),
             Product(brand = "samsung"),
         )
-        Mockito.`when`(cartRepository.getAllItems())
-            .thenReturn(flowOf(Resource.Success(testData, "Success")))
+        coEvery { cartRepository.getAllItems() } returns flowOf(Resource.Success(testData, "Success"))
         cartViewModel.openCart()
-        advanceUntilIdle()
+        //testScope.testScheduler.apply { advanceTimeBy(1000); runCurrent() }
+        delay(1000)
         assertThat(cartViewModel.openCartDataState.value.value.products).isEqualTo(testData)
     }
 }

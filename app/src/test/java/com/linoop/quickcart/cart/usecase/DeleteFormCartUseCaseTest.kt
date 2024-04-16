@@ -4,19 +4,18 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.cart.repository.CartRepository
 import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.utils.Resource
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-@Suppress("DEPRECATION")
 class DeleteFormCartUseCaseTest {
 
     private lateinit var deleteFormCartUseCase: DeleteFormCartUseCase
@@ -26,8 +25,7 @@ class DeleteFormCartUseCaseTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Default)
-        MockitoAnnotations.initMocks(this)
-        cartRepository = Mockito.mock(CartRepository::class.java)
+        cartRepository = mockk<CartRepository>()
         deleteFormCartUseCase = DeleteFormCartUseCaseImpl(cartRepository)
     }
 
@@ -38,13 +36,13 @@ class DeleteFormCartUseCaseTest {
     }
 
     @Test
-    fun `test remove from cart`() = runBlocking {
+    fun `test remove from cart`() = runTest {
         val testData = Product(brand = "Samsung")
-        Mockito.`when`(cartRepository.deleteItem(testData))
-            .thenReturn(flowOf(Resource.Success(true, "Success")))
+        coEvery {  cartRepository.deleteItem(testData) } returns flowOf(Resource.Success(true, "Success"))
         deleteFormCartUseCase.invoke(testData).collect {
             if (it is Resource.Success) {
                 Truth.assertThat(it.data).isTrue()
+                Truth.assertThat(it.message).isEqualTo("Success")
             }
         }
     }
