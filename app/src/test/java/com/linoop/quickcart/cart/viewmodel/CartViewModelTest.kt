@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.linoop.quickcart.cart.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -24,7 +26,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@Suppress("DEPRECATION")
 @ExperimentalCoroutinesApi
 class CartViewModelTest {
 
