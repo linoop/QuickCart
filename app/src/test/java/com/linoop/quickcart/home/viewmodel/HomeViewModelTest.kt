@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.linoop.quickcart.home.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -22,10 +24,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-@Suppress("DEPRECATION")
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
     @get:Rule
