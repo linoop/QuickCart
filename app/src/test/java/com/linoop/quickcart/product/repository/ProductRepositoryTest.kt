@@ -5,10 +5,13 @@ import com.google.common.truth.Truth
 import com.linoop.quickcart.main.model.Product
 import com.linoop.quickcart.main.network.ApiService
 import com.linoop.quickcart.utils.Resource
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -21,7 +24,7 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import retrofit2.Response
 
-@Suppress("DEPRECATION")
+
 class ProductRepositoryTest {
 
     @get:Rule
@@ -36,8 +39,7 @@ class ProductRepositoryTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Default)
-        MockitoAnnotations.initMocks(this)
-        apiService = Mockito.mock(ApiService::class.java)
+        apiService = mockk<ApiService>()
         productRepository = ProductRepositoryImpl(apiService)
     }
 
@@ -48,10 +50,8 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `test get product by id success`() = runBlocking {
-        Mockito.`when`(apiService.getProductById(1)).thenReturn(
-            Response.success(Product(brand = "apple"))
-        )
+    fun `test get product by id success`() = runTest {
+        coEvery { apiService.getProductById(1) } returns  Response.success(Product(brand = "apple"))
         productRepository.invoke(1).collect {
             if (it is Resource.Success) {
                 Truth.assertThat(it.data).isEqualTo(Product(brand = "apple"))
@@ -61,12 +61,10 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `test get product by id error`() = runBlocking {
+    fun `test get product by id error`() = runTest {
         val responseBody: ResponseBody =
             "Response.error()".toResponseBody("application/json".toMediaTypeOrNull())
-        Mockito.`when`(apiService.getProductById(-1)).thenReturn(
-            Response.error(500, responseBody)
-        )
+        coEvery { apiService.getProductById(-1) } returns  Response.error(500, responseBody)
         productRepository.invoke(-1).collect {
             if (it is Resource.Error) {
                 Truth.assertThat(it.data).isNull()

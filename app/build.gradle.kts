@@ -72,6 +72,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //Mockk
+    testImplementation (libs.mockk)
+
     //Mockito library for testing
     testImplementation (libs.mockito.core)
     testImplementation (libs.mockito.inline)
